@@ -6,7 +6,7 @@ import SView from './src/components/SView/SView';
 const App = () => {
   return (
     <SView display='flex' justifyContent='center' flex={1} alignItems='center'>
-      <SText fontWeight='bold' fontSize={20}>
+      <SText fontSize={28} family='bold'>
         hello tarana v2
       </SText>
     </SView>

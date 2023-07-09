@@ -10,7 +10,7 @@
     "test": "jest",
     "prettier": "prettier --config .prettierrc.js --write .",
     "prepare": "husky install",
-    "postinstall": "husky install && npx patch-package"
+    "postinstall": "husky install && npx react-native-asset"
   },
   "dependencies": {
     "navigation": "^6.2.0",
