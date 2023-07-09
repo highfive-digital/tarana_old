@@ -1,4 +1,4 @@
-package com.tarana;
+package dev.megabyt.taranaradio;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
