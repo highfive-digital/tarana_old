@@ -1,5 +1,4 @@
 import React from 'react';
-import { Pressable } from 'react-native';
 import FastImage, {
   type ImageStyle,
   type OnLoadEvent,
@@ -33,24 +32,21 @@ const SImage: React.FC<ImageConfig & ImageStyle> = (props) => {
     onLoad,
     onLoadEnd,
     onProgress,
-    onPress = () => {},
     ...imageStyles
   } = props;
   const { styles } = getImagesStyles(imageStyles);
 
   return (
-    <Pressable onPress={onPress}>
-      <FastImage
-        source={{ uri: src, priority }}
-        fallback={fallback}
-        style={styles.image}
-        onLoadStart={onLoadStart}
-        onError={onError}
-        onLoad={onLoad}
-        onLoadEnd={onLoadEnd}
-        onProgress={onProgress}
-      />
-    </Pressable>
+    <FastImage
+      source={{ uri: src, priority }}
+      fallback={fallback}
+      style={styles.image}
+      onLoadStart={onLoadStart}
+      onError={onError}
+      onLoad={onLoad}
+      onLoadEnd={onLoadEnd}
+      onProgress={onProgress}
+    />
   );
 };
 
