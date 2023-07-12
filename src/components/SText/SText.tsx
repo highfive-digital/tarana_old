@@ -4,7 +4,7 @@ import { type BaseColorType, type FontFamilyWeightType } from '~types/components
 import getTextStyles from './sText.styles';
 
 interface STextProps {
-  children: string;
+  children: React.ReactNode | undefined;
   color?: BaseColorType;
   family?: FontFamilyWeightType;
   textConfig?: TextProps;
