@@ -1,7 +1,7 @@
 import React from 'react';
 import { SView } from '~components';
 import SText from '~components/SText/SText';
-import { colors } from '~styles';
+import { colors, theme } from '~styles';
 
 const MiniPlayer = ({ onClick }: any) => {
   return (
@@ -10,8 +10,9 @@ const MiniPlayer = ({ onClick }: any) => {
       alignItems='center'
       width={'100%'}
       height={50}
-      borderBottomColor={colors.gray[400]}
-      borderWidth={1}
+      borderBottomColor={colors.black[900]}
+      borderWidth={0.5}
+      backgroundColor={theme.dark.navigation.background}
     >
       <SText
         textConfig={{

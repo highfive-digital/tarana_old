@@ -29,7 +29,7 @@ const SimplePlayer = () => {
       <SView
         flex={1}
         justifyContent='center'
-        backgroundColor={theme.dark.navigation.background}
+        backgroundColor={theme.dark.background.primary}
         position='absolute'
         bottom={56}
         width={'100%'}
@@ -49,7 +49,7 @@ const SimplePlayer = () => {
           animationConfigs={animationConfigs}
         >
           <SView
-            backgroundColor={theme.dark.navigation.background}
+            backgroundColor={theme.dark.background.primary}
             justifyContent='center'
             alignItems='center'
             flex={1}

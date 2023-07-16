@@ -6,7 +6,8 @@ import Home from '~screens/Home';
 import Search from '~screens/Search';
 import { theme } from '~styles';
 import { fonts } from '~styles/theme';
-import { mainNavigator } from './stateNavigators';
+import { homeNavigator, searchNavigator, settingsNavigator } from './stateNavigators';
+import Settings from '~screens/Settings';
 
 const BottomTabs = () => {
   return (
@@ -24,12 +25,11 @@ const BottomTabs = () => {
         fontFamily={fonts.medium}
         fontSize={10}
       >
-        <NavigationHandler stateNavigator={mainNavigator}>
-          <NavigationStack>
+        <NavigationHandler stateNavigator={homeNavigator}>
+          <NavigationStack
+            backgroundColor={() => (Platform.OS === 'android' ? 'rgba(255,255,255,0)' : 'white')}
+          >
             <Scene stateKey='home'>
-              <Home />
-            </Scene>
-            <Scene stateKey='search'>
               <Home />
             </Scene>
           </NavigationStack>
@@ -37,20 +37,33 @@ const BottomTabs = () => {
       </TabBarItem>
 
       <TabBarItem
-        title='Home'
+        title='Search'
+        image={require('../assets/images/nav-icons/search_inactive.png')}
+        fontFamily={fonts.medium}
+        fontSize={10}
+      >
+        <NavigationHandler stateNavigator={searchNavigator}>
+          <NavigationStack
+            backgroundColor={() => (Platform.OS === 'android' ? 'rgba(255,255,255,0)' : 'white')}
+          >
+            <Scene stateKey='search'>
+              <Search />
+            </Scene>
+          </NavigationStack>
+        </NavigationHandler>
+      </TabBarItem>
+      <TabBarItem
+        title='Settings'
         image={require('../assets/images/nav-icons/settings_inactive.png')}
         fontFamily={fonts.medium}
         fontSize={10}
       >
-        <NavigationHandler stateNavigator={mainNavigator}>
+        <NavigationHandler stateNavigator={settingsNavigator}>
           <NavigationStack
             backgroundColor={() => (Platform.OS === 'android' ? 'rgba(255,255,255,0)' : 'white')}
           >
-            <Scene stateKey='home'>
-              <Home />
-            </Scene>
-            <Scene stateKey='search'>
-              <Search />
+            <Scene stateKey='settings'>
+              <Settings />
             </Scene>
           </NavigationStack>
         </NavigationHandler>

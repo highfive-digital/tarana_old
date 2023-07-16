@@ -2,12 +2,12 @@ import React from 'react';
 import { SView } from '~components';
 import SText from '~components/SText/SText';
 
-const Search = () => {
+const Settings = () => {
   return (
     <SView display='flex' flex={1} justifyContent='center' alignItems='center'>
-      <SText>WELCOME TO SEARCH</SText>
+      <SText>WELCOME TO SETTINGS</SText>
     </SView>
   );
 };
 
-export default Search;
+export default Settings;

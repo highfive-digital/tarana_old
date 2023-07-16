@@ -1,16 +1,14 @@
 import { StateNavigator } from 'navigation';
 
-const mainNavigator = new StateNavigator([
-  { key: 'tabs' },
-  { key: 'home', trackCrumbTrail: true },
-  { key: 'playerx', trackCrumbTrail: true },
-  { key: 'search', trackCrumbTrail: true },
-  { key: 'settings', trackCrumbTrail: true }
-]);
+const homeNavigator = new StateNavigator([{ key: 'home', trackCrumbTrail: true }]);
+
+const searchNavigator = new StateNavigator([{ key: 'search', trackCrumbTrail: true }]);
+
+const settingsNavigator = new StateNavigator([{ key: 'settings', trackCrumbTrail: true }]);
 
 const tabNavigator = new StateNavigator([
   { key: 'tabs' },
   { key: 'player', trackCrumbTrail: true }
 ]);
 
-export { mainNavigator, tabNavigator };
+export { homeNavigator, searchNavigator, settingsNavigator, tabNavigator };
