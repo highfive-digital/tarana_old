@@ -59,9 +59,8 @@ export const theme = {
 // };
 
 export const fonts = {
-  regular: 'Nexa-Regular',
-  medium: 'Nexa-Book',
-  semibold: 'Nexa-Bold',
-  bold: 'Nexa-XBold',
-  heavy: 'Nexa-Heavy'
+  regular: 'ChesnaGrotesk-Regular',
+  medium: 'ChesnaGrotesk-Medium',
+  semibold: 'ChesnaGrotesk-SemiBold',
+  bold: 'ChesnaGrotesk-Bold'
 };
