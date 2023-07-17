@@ -1,30 +1,26 @@
 import React from 'react';
 
-import SText from '~components/SText/SText';
-import Tile from '~components/Tile/Tile';
-import useListener from '~helpers/hooks/useListeners.hooks';
-import SView from './src/components/SView/SView';
+import { NavigationHandler } from 'navigation-react';
+import { NavigationStack, Scene } from 'navigation-react-native';
+import { StatusBar } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import PlayerSlider from '~components/PlayerSlider';
+import BottomTabs from '~navigation/BottomTabs';
+import { tabNavigator } from '~navigation/stateNavigators';
 
 const App = () => {
-  const { notify, state } = useListener('add', 1);
-
   return (
-    <SView display='flex' justifyContent='center' flex={1} alignItems='center'>
-      <SText fontSize={16} family='medium'>
-        Tarana v{state}
-      </SText>
-      <Tile
-        src={
-          'https://c.saavncdn.com/editorial/BestOfRomanceHindi_20230701031821.jpg?bch=1688183318'
-        }
-        size='xl'
-        radius='xs'
-        titleFontSize='sm'
-        onClick={() => {
-          notify('add', (state as number) + 1);
-        }}
-      />
-    </SView>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <StatusBar barStyle='light-content' backgroundColor='transparent' translucent />
+      <NavigationHandler stateNavigator={tabNavigator}>
+        <NavigationStack>
+          <Scene stateKey='tabs'>
+            <BottomTabs />
+          </Scene>
+        </NavigationStack>
+      </NavigationHandler>
+      <PlayerSlider />
+    </GestureHandlerRootView>
   );
 };
 
