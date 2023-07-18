@@ -1,5 +1,6 @@
-import TrackPlayer, { Event, type PlaybackStateEvent, type Track } from 'react-native-track-player';
+import TrackPlayer, { type Track } from 'react-native-track-player';
 import { playerState } from '~states/playerState';
+import { PLAYER_EVENTS } from './player.helper';
 import { type Status } from './player.types';
 
 class Player {
@@ -53,17 +54,7 @@ class Player {
   }
 
   attachEventListeners() {
-    const EVENTS = [
-      {
-        event: Event.PlaybackState,
-        callback: (evt: any) => {
-          const { state }: PlaybackStateEvent = evt;
-          playerState.setStatus(String(state).toUpperCase() as Status);
-        }
-      }
-    ];
-
-    EVENTS.forEach((evtObj) => {
+    PLAYER_EVENTS.forEach((evtObj) => {
       TrackPlayer.addEventListener(evtObj.event, evtObj.callback);
     });
   }
