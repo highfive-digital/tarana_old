@@ -2,6 +2,7 @@ import TrackPlayer, { type Track } from 'react-native-track-player';
 import { playerState } from '~states/playerState';
 import { PLAYER_EVENTS } from './player.helper';
 import { type Status } from './player.types';
+import { metaDataOptions } from './playerOptions';
 
 class Player {
   private static _instance: Player;
@@ -21,6 +22,7 @@ class Player {
     let isPlayerInitialized = false;
     try {
       await TrackPlayer.setupPlayer();
+      await TrackPlayer.updateOptions(metaDataOptions);
       playerState.setStatus('IDLE');
       isPlayerInitialized = true;
     } catch (error) {

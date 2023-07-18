@@ -3,6 +3,7 @@ import { Pressable } from 'react-native';
 import { useSnapshot } from 'valtio';
 import { SView } from '~components';
 import SText from '~components/SText/SText';
+import Tile from '~components/Tile/Tile';
 import Player from '~modules/player/player.module';
 import { playerState } from '~states/playerState';
 import { colors } from '~styles';
@@ -40,9 +41,15 @@ const Home = () => {
 
   return (
     <SView display='flex' flex={1} justifyContent='center' alignItems='center'>
-      <SText>{snap.status}</SText>
-      <SText>{snap.currentTrack?.title}</SText>
-      <SText>{snap.currentTrack?.artist}</SText>
+      <SText marginBottom={15}>{snap.status}</SText>
+
+      <Tile
+        src={snap.currentTrack.artwork as string}
+        size='xl'
+        title={snap.currentTrack?.title as string}
+        subTitle={snap.currentTrack?.artist as string}
+        radius='lg'
+      />
       <Pressable
         onPress={() => {
           player.play();
@@ -51,7 +58,7 @@ const Home = () => {
         style={{
           width: 200,
           height: 60,
-          backgroundColor: colors.red[500],
+          backgroundColor: colors.red[600],
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -69,7 +76,7 @@ const Home = () => {
         style={{
           width: 200,
           height: 60,
-          backgroundColor: colors.red[500],
+          backgroundColor: colors.red[600],
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',

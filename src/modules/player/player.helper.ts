@@ -7,7 +7,8 @@ export const baseTrack: Track = {
   url: '',
   title: '',
   description: '',
-  duration: 0
+  duration: 0,
+  artwork: ''
 };
 
 export const PLAYER_EVENTS = [

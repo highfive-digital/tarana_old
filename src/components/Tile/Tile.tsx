@@ -3,8 +3,8 @@ import { Pressable } from 'react-native';
 import { type Priority } from 'react-native-fast-image';
 import { SView } from '~components';
 import SImage from '~components/Image/SImage';
-import SText from '~components/SText/SText';
-import { borderRadius, fontSize, spacing } from '~styles/utilities';
+import TitleSubtitle from '~components/TitleSubtitle';
+import { borderRadius } from '~styles/utilities';
 import { type BorderRadius, type FontSize, type TileSize } from '~types/components.types';
 
 const tileSizeMap = {
@@ -39,6 +39,8 @@ const tileSizeMap = {
 };
 interface TileConfig {
   src: string;
+  title: string;
+  subTitle: string;
   size?: TileSize;
   priority?: Priority;
   radius?: BorderRadius;
@@ -49,6 +51,8 @@ interface TileConfig {
 
 const Tile: React.FC<TileConfig> = ({
   src,
+  title = '',
+  subTitle = '',
   size = 'md',
   priority = 'normal',
   radius = 'xs',
@@ -66,22 +70,15 @@ const Tile: React.FC<TileConfig> = ({
           height={'100%'}
           width={'100%'}
         />
-        <SView>
-          <SText
-            paddingTop={spacing.xs}
-            fontSize={fontSize[titleFontSize]}
-            textConfig={{ ellipsizeMode: 'tail', numberOfLines: 1 }}
-          >
-            Hanuman Chalisa - Hanuman
-          </SText>
-          <SText
-            paddingTop={spacing.none}
-            fontSize={fontSize[subtitleFontSize]}
-            textConfig={{ ellipsizeMode: 'tail', numberOfLines: 1 }}
-          >
-            GowraHari, Saicharan Bhaskaruni
-          </SText>
-        </SView>
+      </SView>
+
+      <SView width={tileSizeMap[size].width}>
+        <TitleSubtitle
+          titleFontSize={titleFontSize}
+          subtitleFontSize={subtitleFontSize}
+          title={title}
+          subTitle={subTitle}
+        />
       </SView>
     </Pressable>
   );
