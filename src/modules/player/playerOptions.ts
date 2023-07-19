@@ -1,13 +1,20 @@
 import {
   AppKilledPlaybackBehavior,
   Capability,
-  type MetadataOptions
+  type PlayerOptions,
+  type UpdateOptions
 } from 'react-native-track-player';
 
-export const metaDataOptions: MetadataOptions = {
+export const playerOptions: PlayerOptions = {
+  autoHandleInterruptions: true,
+  autoUpdateMetadata: true
+};
+
+export const updateOptions: UpdateOptions = {
   android: {
     appKilledPlaybackBehavior: AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification
   },
   capabilities: [Capability.Play, Capability.Pause, Capability.Stop],
-  compactCapabilities: [Capability.Play, Capability.Pause, Capability.Stop]
+  compactCapabilities: [Capability.Play, Capability.Pause, Capability.Stop],
+  notificationCapabilities: [Capability.Play, Capability.Pause, Capability.Stop]
 };

@@ -1,4 +1,9 @@
-import { Event, type PlaybackStateEvent, type Track } from 'react-native-track-player';
+import {
+  Event,
+  type NowPlayingMetadata,
+  type PlaybackState,
+  type Track
+} from 'react-native-track-player';
 import { playerState } from '~states/playerState';
 import { type Status } from './player.types';
 
@@ -15,8 +20,14 @@ export const PLAYER_EVENTS = [
   {
     event: Event.PlaybackState,
     callback: (evt: any) => {
-      const { state }: PlaybackStateEvent = evt;
+      const { state }: PlaybackState = evt;
       playerState.setStatus(String(state).toUpperCase() as Status);
+    }
+  },
+  {
+    event: Event.PlaybackMetadataReceived,
+    callback: (data: any) => {
+      playerState.setMetaData(data as NowPlayingMetadata);
     }
   }
 ];

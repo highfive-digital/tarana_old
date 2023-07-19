@@ -1,4 +1,4 @@
-import { type Track } from 'react-native-track-player';
+import { type NowPlayingMetadata, type Track } from 'react-native-track-player';
 
 export type Status =
   | 'READY'
@@ -15,8 +15,10 @@ export interface PlayerState {
   status: Status;
   error: string;
   currentTrack: Track;
+  metaData: NowPlayingMetadata;
   setStatus: (status: Status) => void;
   setError: (status: string) => void;
   setIsInitialized: (status: boolean) => void;
   setCurrentTrack: (status: Track) => void;
+  setMetaData: (metaData: NowPlayingMetadata) => void;
 }

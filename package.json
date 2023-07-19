@@ -22,7 +22,7 @@
     "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "^2.12.0",
     "react-native-reanimated": "^3.3.0",
-    "react-native-track-player": "^3.2.0",
+    "react-native-track-player": "^3.2.0-af9003b72394ebac2608965b8467623291d96b3d",
     "valtio": "^1.10.7"
   },
   "devDependencies": {
