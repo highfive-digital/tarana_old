@@ -1,19 +1,13 @@
-import {
-  Event,
-  type NowPlayingMetadata,
-  type PlaybackState,
-  type Track
-} from 'react-native-track-player';
-import { playerState } from '~states/playerState';
-import { type Status } from './player.types';
+import { Event, type NowPlayingMetadata, type PlaybackState } from 'react-native-track-player';
+import { playerActions } from '~states/player';
+import { type Status, type Track } from './player.types';
 
 export const baseTrack: Track = {
   artist: '',
-  url: '',
+  artwork: '',
+  genre: '',
   title: '',
-  description: '',
-  duration: 0,
-  artwork: ''
+  url: ''
 };
 
 export const PLAYER_EVENTS = [
@@ -21,13 +15,13 @@ export const PLAYER_EVENTS = [
     event: Event.PlaybackState,
     callback: (evt: any) => {
       const { state }: PlaybackState = evt;
-      playerState.setStatus(String(state).toUpperCase() as Status);
+      playerActions.setStatus(String(state).toUpperCase() as Status);
     }
   },
   {
     event: Event.PlaybackMetadataReceived,
     callback: (data: any) => {
-      playerState.setMetaData(data as NowPlayingMetadata);
+      playerActions.setMetaData(data as NowPlayingMetadata);
     }
   }
 ];

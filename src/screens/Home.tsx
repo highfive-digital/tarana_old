@@ -1,24 +1,24 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Pressable } from 'react-native';
 import { useSnapshot } from 'valtio';
 import { SView } from '~components';
 import SText from '~components/SText/SText';
 import Tile from '~components/Tile/Tile';
 import Player from '~modules/player/player.module';
-import { playerState } from '~states/playerState';
+import { type Track } from '~modules/player/player.types';
+import { playerState } from '~states/player';
 import { colors } from '~styles';
 
 const player = new Player();
 
-const track1 = [
+const track1: Track[] = [
   {
-    url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/PAT_HIN_ESTAAC.aac', // Load media from the network
-    title: 'Radio Mirchi Patna',
-    artist: 'Radio Mirchi',
+    url: 'http://107.182.234.197:7466/;stream.mp3', // Load media from the network
+    title: 'Radio Zindagi Romance',
+    artist: 'Radio Zindagi',
     genre: 'Progressive House, Electro House',
-    date: '2022-27-17T07:00:00+00:00', // RFC 3339
     artwork:
-      'https://static-media.streema.com/media/cache/73/55/7355b9f13d29c36c2053ac61c805d71a.jpg' // Load artwork from the network
+      'http://res.cloudinary.com/megabyt-5/image/upload/v1621792541/tarana-radio-app/thumbnail-icons/india/maharashtra/mumbai/st-f6f8ee2c919f8909.png' // Load artwork from the network
   }
 ];
 
@@ -45,10 +45,10 @@ const Home = () => {
       <SText marginBottom={15}>{snap.status}</SText>
 
       <Tile
-        src={snap.currentTrack?.artwork as string}
+        src={snap.currentTrack?.artwork}
         size='xl'
-        title={snap.currentTrack?.title as string}
-        subTitle={snap.currentTrack?.artist as string}
+        title={snap.currentTrack?.title}
+        subTitle={snap.currentTrack?.artist}
         radius='lg'
       />
       <Pressable

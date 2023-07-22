@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-// src/services/PlaybackService.ts
 import TrackPlayer, { Event } from 'react-native-track-player';
 
 export const PlaybackService = async function () {

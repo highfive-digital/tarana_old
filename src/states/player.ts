@@ -1,14 +1,22 @@
-import { type NowPlayingMetadata, type Track } from 'react-native-track-player';
+import { type NowPlayingMetadata } from 'react-native-track-player';
 import { proxy } from 'valtio';
 import { baseTrack } from '~modules/player/player.helper';
-import { type PlayerState, type Status } from '~modules/player/player.types';
+import {
+  type Track,
+  type PlayerState,
+  type Status,
+  type PlayerActions
+} from '~modules/player/player.types';
 
 export const playerState: PlayerState = proxy({
   isInitialized: false,
   status: 'NONE',
   error: '',
   currentTrack: baseTrack,
-  metaData: {},
+  metaData: {}
+});
+
+export const playerActions: PlayerActions = {
   setStatus: (status: Status) => {
     playerState.status = status;
   },
@@ -19,9 +27,10 @@ export const playerState: PlayerState = proxy({
     playerState.isInitialized = isInitialized;
   },
   setCurrentTrack: (track: Track) => {
-    playerState.currentTrack = track;
+    const currentTrack = { ...baseTrack, ...track };
+    playerState.currentTrack = currentTrack;
   },
   setMetaData: (metaData: NowPlayingMetadata) => {
     playerState.metaData = metaData;
   }
-});
+};

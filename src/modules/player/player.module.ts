@@ -1,6 +1,6 @@
 import TrackPlayer, { type Track } from 'react-native-track-player';
 
-import { playerState } from '~states/playerState';
+import { playerActions, playerState } from '~states/player';
 import { PLAYER_EVENTS, baseTrack } from './player.helper';
 import { type Status } from './player.types';
 import { playerOptions, updateOptions } from './playerOptions';
@@ -24,7 +24,6 @@ class Player {
     try {
       await TrackPlayer.setupPlayer(playerOptions);
       await TrackPlayer.updateOptions(updateOptions);
-      playerState.setStatus('IDLE');
       isPlayerInitialized = true;
     } catch (error) {
       isPlayerInitialized = false;
@@ -37,11 +36,12 @@ class Player {
     this.setupPlayer()
       .then((res) => {
         if (res) {
-          playerState.setIsInitialized(res);
+          playerActions.setIsInitialized(res);
+          playerActions.setStatus('IDLE');
         }
       })
       .catch((res) => {
-        playerState.setIsInitialized(res);
+        playerActions.setIsInitialized(res);
       });
   }
 
@@ -50,7 +50,8 @@ class Player {
     const activeTrackIndex = await TrackPlayer.getActiveTrackIndex();
     const activeTrack = await TrackPlayer.getTrack(activeTrackIndex as number);
     const currentTrack = activeTrack !== undefined ? activeTrack : baseTrack;
-    playerState.setCurrentTrack(currentTrack);
+
+    playerActions.setCurrentTrack(currentTrack);
     console.log('::IS_ADDED::', isAdded);
   }
 
