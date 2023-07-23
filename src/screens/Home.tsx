@@ -6,7 +6,7 @@ import SText from '~components/SText/SText';
 import Tile from '~components/Tile/Tile';
 import Player from '~modules/player/player.module';
 import { type Track } from '~modules/player/player.types';
-import { playerState } from '~states/player';
+import { playerActions, playerState } from '~states/player';
 import { colors } from '~styles';
 
 const player = new Player();
@@ -22,21 +22,23 @@ const track1: Track[] = [
   }
 ];
 
+const track2: Track[] = [
+  {
+    url: 'https://funasia.streamguys1.com/live4', // Load media from the network
+    title: 'BIG FM 106.2',
+    artist: 'Tarana Audio',
+    genre: 'Progressive House, Electro House',
+    artwork:
+      'http://res.cloudinary.com/megabyt-5/image/upload/v1623429142/tarana-radio-app/thumbnail-icons/india/maharashtra/mumbai/st-f0fbd10dde8bb905.png' // Load artwork from the network
+  }
+];
+
 const Home = () => {
   const snap = useSnapshot(playerState);
-
   useEffect(() => {
     player.init();
     if (snap.status === 'IDLE') {
       player.attachEventListeners();
-      player
-        .add(track1)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((res) => {
-          console.log(res);
-        });
     }
   }, [snap.status]);
 
@@ -44,31 +46,49 @@ const Home = () => {
     <SView display='flex' flex={1} justifyContent='center' alignItems='center'>
       <SText marginBottom={15}>{snap.status}</SText>
 
-      <Tile
-        src={snap.currentTrack?.artwork}
-        size='xl'
-        title={snap.currentTrack?.title}
-        subTitle={snap.currentTrack?.artist}
-        radius='lg'
-      />
-      <Pressable
-        onPress={() => {
-          player.play();
-        }}
-        accessibilityLabel='Learn more about this purple button'
-        style={{
-          width: 200,
-          height: 60,
-          backgroundColor: colors.red[600],
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: 4,
-          marginTop: 20
-        }}
-      >
-        <SText>PLAY NOW</SText>
-      </Pressable>
+      <SView display='flex' flexDirection='row' gap={12}>
+        <Tile
+          src={
+            'http://res.cloudinary.com/megabyt-5/image/upload/v1621792541/tarana-radio-app/thumbnail-icons/india/maharashtra/mumbai/st-f6f8ee2c919f8909.png'
+          }
+          size='xl'
+          title={'Radio Zindagi Romance'}
+          subTitle={'Radio Zindagi'}
+          radius='lg'
+          onClick={() => {
+            player
+              .add(track1)
+              .then((res) => {
+                console.log(res);
+                player.play();
+              })
+              .catch((res) => {
+                console.log(res);
+              });
+          }}
+        />
+        <Tile
+          src={
+            'http://res.cloudinary.com/megabyt-5/image/upload/v1623429142/tarana-radio-app/thumbnail-icons/india/maharashtra/mumbai/st-f0fbd10dde8bb905.png'
+          }
+          size='xl'
+          title={'BIG FM 106.2'}
+          subTitle={'Tarana Audio'}
+          radius='lg'
+          onClick={() => {
+            player
+              .add(track2)
+              .then((res) => {
+                console.log(res);
+                player.play();
+              })
+              .catch((res) => {
+                console.log(res);
+              });
+          }}
+        />
+      </SView>
+
       <Pressable
         onPress={() => {
           player.pause();
@@ -89,8 +109,74 @@ const Home = () => {
       </Pressable>
 
       <SView marginTop={12}>
-        <SText>{snap.metaData?.title}</SText>
-        <SText>{snap.metaData?.artist}</SText>
+        <SText>Elapsed Sleep Time: {snap.elapsedSleepDuration}</SText>
+      </SView>
+
+      <SView marginTop={12}>
+        <SText>Sleep Timer set for : {snap.sleepTimeDuration / 60}</SText>
+      </SView>
+      <SView marginTop={50}>
+        <SText>Set Sleep Timer Minutes</SText>
+        <SView display='flex' flexDirection='row' gap={4}>
+          <Pressable
+            onPress={() => {
+              playerActions.setSleepTimeDuration(1);
+            }}
+            accessibilityLabel='Learn more about this purple button'
+            style={{
+              width: 80,
+              height: 60,
+              backgroundColor: colors.red[600],
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 4,
+              marginTop: 20
+            }}
+          >
+            <SText>1</SText>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              playerActions.setSleepTimeDuration(5);
+            }}
+            accessibilityLabel='Learn more about this purple button'
+            style={{
+              width: 80,
+              height: 60,
+              backgroundColor: colors.red[600],
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 4,
+              marginTop: 20
+            }}
+          >
+            <SText>5</SText>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              playerActions.setSleepTimeDuration(10);
+            }}
+            accessibilityLabel='Learn more about this purple button'
+            style={{
+              width: 80,
+              height: 60,
+              backgroundColor: colors.red[600],
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 4,
+              marginTop: 20
+            }}
+          >
+            <SText>10</SText>
+          </Pressable>
+        </SView>
+      </SView>
+      <SView marginTop={20}>
+        <SText>BUFFERED_POSITION:{snap.currentTrack.bufferPosition}</SText>
+        <SText>CURRENT_POSITION:{snap.currentTrack.currentPosition}</SText>
       </SView>
     </SView>
   );

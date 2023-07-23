@@ -16,14 +16,18 @@ export interface PlayerState {
   error: string;
   currentTrack: Track;
   metaData: NowPlayingMetadata;
+  sleepTimeDuration: number;
+  elapsedSleepDuration: number;
 }
 
 export interface PlayerActions {
   setStatus: (status: Status) => void;
   setError: (status: string) => void;
   setIsInitialized: (status: boolean) => void;
-  setCurrentTrack: (status: any) => void;
+  setCurrentTrack: (track: Track) => void;
   setMetaData: (metaData: NowPlayingMetadata) => void;
+  setSleepTimeDuration: (duration: number) => void;
+  setElapsedSleepDuration: (duration: number) => void;
 }
 
 export interface Track {
@@ -32,4 +36,6 @@ export interface Track {
   title: string;
   artwork: string;
   genre: string;
+  bufferPosition?: number;
+  currentPosition?: number;
 }

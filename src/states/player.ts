@@ -2,10 +2,10 @@ import { type NowPlayingMetadata } from 'react-native-track-player';
 import { proxy } from 'valtio';
 import { baseTrack } from '~modules/player/player.helper';
 import {
-  type Track,
+  type PlayerActions,
   type PlayerState,
   type Status,
-  type PlayerActions
+  type Track
 } from '~modules/player/player.types';
 
 export const playerState: PlayerState = proxy({
@@ -13,7 +13,9 @@ export const playerState: PlayerState = proxy({
   status: 'NONE',
   error: '',
   currentTrack: baseTrack,
-  metaData: {}
+  metaData: {},
+  sleepTimeDuration: 0,
+  elapsedSleepDuration: 0
 });
 
 export const playerActions: PlayerActions = {
@@ -32,5 +34,13 @@ export const playerActions: PlayerActions = {
   },
   setMetaData: (metaData: NowPlayingMetadata) => {
     playerState.metaData = metaData;
+  },
+  setSleepTimeDuration(duration) {
+    const durationInSeconds = duration * 60;
+    playerState.elapsedSleepDuration = 0;
+    playerState.sleepTimeDuration = durationInSeconds;
+  },
+  setElapsedSleepDuration(duration) {
+    playerState.elapsedSleepDuration += duration;
   }
 };

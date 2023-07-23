@@ -1,5 +1,9 @@
-import { Event, type NowPlayingMetadata, type PlaybackState } from 'react-native-track-player';
-import { playerActions } from '~states/player';
+import TrackPlayer, {
+  Event,
+  type NowPlayingMetadata,
+  type PlaybackState
+} from 'react-native-track-player';
+import { playerActions, playerState } from '~states/player';
 import { type Status, type Track } from './player.types';
 
 export const baseTrack: Track = {
@@ -7,7 +11,9 @@ export const baseTrack: Track = {
   artwork: '',
   genre: '',
   title: '',
-  url: ''
+  url: '',
+  bufferPosition: 0,
+  currentPosition: 0
 };
 
 export const PLAYER_EVENTS = [
@@ -22,6 +28,33 @@ export const PLAYER_EVENTS = [
     event: Event.PlaybackMetadataReceived,
     callback: (data: any) => {
       playerActions.setMetaData(data as NowPlayingMetadata);
+    }
+  },
+  {
+    event: Event.PlaybackProgressUpdated,
+    callback: (data: any) => {
+      const updateTrackData = {
+        ...playerState.currentTrack,
+        bufferPosition: data.buffer,
+        currentPosition: data.position
+      };
+      playerActions.setCurrentTrack(updateTrackData);
+
+      if (playerState.sleepTimeDuration > 0) {
+        if (playerState.sleepTimeDuration === playerState.elapsedSleepDuration) {
+          TrackPlayer.pause()
+            .then(() => {
+              console.log('PLAYER SLEEP DONE');
+            })
+            .catch(() => {
+              console.log('PLAYER SLEEP FAIL');
+            });
+          playerActions.setElapsedSleepDuration(0);
+          playerActions.setSleepTimeDuration(0);
+        } else {
+          playerActions.setElapsedSleepDuration(1); // replace with constant
+        }
+      }
     }
   }
 ];

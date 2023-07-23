@@ -1,8 +1,8 @@
-import TrackPlayer, { type Track } from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 
 import { playerActions, playerState } from '~states/player';
 import { PLAYER_EVENTS, baseTrack } from './player.helper';
-import { type Status } from './player.types';
+import { type Status, type Track } from './player.types';
 import { playerOptions, updateOptions } from './playerOptions';
 
 class Player {
@@ -46,12 +46,13 @@ class Player {
   }
 
   async add(track: Track[]) {
+    await TrackPlayer.reset();
     const isAdded = await TrackPlayer.add(track);
     const activeTrackIndex = await TrackPlayer.getActiveTrackIndex();
     const activeTrack = await TrackPlayer.getTrack(activeTrackIndex as number);
     const currentTrack = activeTrack !== undefined ? activeTrack : baseTrack;
 
-    playerActions.setCurrentTrack(currentTrack);
+    playerActions.setCurrentTrack(currentTrack as Track);
     console.log('::IS_ADDED::', isAdded);
   }
 
