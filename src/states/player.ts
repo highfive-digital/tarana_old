@@ -15,7 +15,8 @@ export const playerState: PlayerState = proxy({
   currentTrack: baseTrack,
   metaData: {},
   sleepTimeDuration: 0,
-  elapsedSleepDuration: 0
+  elapsedSleepDuration: 0,
+  volume: 0.5
 });
 
 export const playerActions: PlayerActions = {
@@ -35,12 +36,15 @@ export const playerActions: PlayerActions = {
   setMetaData: (metaData: NowPlayingMetadata) => {
     playerState.metaData = metaData;
   },
-  setSleepTimeDuration(duration) {
+  setSleepTimeDuration(duration: number) {
     const durationInSeconds = duration * 60;
     playerState.elapsedSleepDuration = 0;
     playerState.sleepTimeDuration = durationInSeconds;
   },
-  setElapsedSleepDuration(duration) {
+  setElapsedSleepDuration(duration: number) {
     playerState.elapsedSleepDuration += duration;
+  },
+  setVolume(volume: number) {
+    playerState.volume = volume;
   }
 };

@@ -88,6 +88,11 @@ class Player {
         });
     }
   }
+
+  async setVolume(volume: number) {
+    playerActions.setVolume(volume);
+    await TrackPlayer.setVolume(volume);
+  }
 }
 
 export default Player;

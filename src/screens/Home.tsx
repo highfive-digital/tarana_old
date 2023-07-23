@@ -1,3 +1,4 @@
+import { Slider } from '@miblanchard/react-native-slider';
 import { useEffect } from 'react';
 import { Pressable } from 'react-native';
 import { TrackType } from 'react-native-track-player';
@@ -8,7 +9,7 @@ import Tile from '~components/Tile/Tile';
 import Player from '~modules/player/player.module';
 import { type Track } from '~modules/player/player.types';
 import { playerActions, playerState } from '~states/player';
-import { colors } from '~styles';
+import { colors, theme } from '~styles';
 
 const player = new Player();
 
@@ -43,6 +44,8 @@ const Home = () => {
       player.attachEventListeners();
     }
   }, [snap.status]);
+
+  console.log('RE_RENDERING');
 
   return (
     <SView display='flex' flex={1} justifyContent='center' alignItems='center'>
@@ -97,7 +100,7 @@ const Home = () => {
         style={{
           width: 200,
           height: 60,
-          backgroundColor: colors.red[600],
+          backgroundColor: theme.dark.button.primary,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -126,7 +129,7 @@ const Home = () => {
             style={{
               width: 80,
               height: 60,
-              backgroundColor: colors.red[600],
+              backgroundColor: theme.dark.button.primary,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
@@ -144,7 +147,7 @@ const Home = () => {
             style={{
               width: 80,
               height: 60,
-              backgroundColor: colors.red[600],
+              backgroundColor: theme.dark.button.primary,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
@@ -162,7 +165,7 @@ const Home = () => {
             style={{
               width: 80,
               height: 60,
-              backgroundColor: colors.red[600],
+              backgroundColor: theme.dark.button.primary,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
@@ -174,9 +177,34 @@ const Home = () => {
           </Pressable>
         </SView>
       </SView>
-      <SView marginTop={20}>
+      {/* <SView marginTop={20}>
         <SText>BUFFERED_POSITION:{snap.currentTrack.bufferPosition}</SText>
         <SText>CURRENT_POSITION:{snap.currentTrack.currentPosition}</SText>
+      </SView> */}
+
+      <SView width={'100%'} padding={12}>
+        <Slider
+          value={snap.volume}
+          maximumValue={1}
+          trackStyle={{ backgroundColor: colors.black[400], height: 3 }}
+          thumbStyle={{
+            backgroundColor: theme.dark.text.primary,
+            height: 24,
+            width: 24,
+            borderRadius: 100
+          }}
+          minimumTrackTintColor={theme.dark.button.primary}
+          onValueChange={(value) => {
+            player
+              .setVolume(Number(Number(value).toFixed(2)))
+              .then(() => {
+                console.log('VOLUME_UPDATED');
+              })
+              .catch(() => {
+                console.log('VOLUME_UPDATE_FAILED');
+              });
+          }}
+        />
       </SView>
     </SView>
   );

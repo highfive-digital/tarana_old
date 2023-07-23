@@ -18,6 +18,7 @@ export interface PlayerState {
   metaData: NowPlayingMetadata;
   sleepTimeDuration: number;
   elapsedSleepDuration: number;
+  volume: number;
 }
 
 export interface PlayerActions {
@@ -28,6 +29,7 @@ export interface PlayerActions {
   setMetaData: (metaData: NowPlayingMetadata) => void;
   setSleepTimeDuration: (duration: number) => void;
   setElapsedSleepDuration: (duration: number) => void;
+  setVolume: (volume: number) => void;
 }
 
 export interface Track {
