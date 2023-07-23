@@ -1,4 +1,3 @@
-import { Slider } from '@miblanchard/react-native-slider';
 import { useEffect } from 'react';
 import { Pressable } from 'react-native';
 import { TrackType } from 'react-native-track-player';
@@ -6,10 +5,11 @@ import { useSnapshot } from 'valtio';
 import { SView } from '~components';
 import SText from '~components/SText/SText';
 import Tile from '~components/Tile/Tile';
+import VolumeSlider from '~components/VolumeSlider';
 import Player from '~modules/player/player.module';
 import { type Track } from '~modules/player/player.types';
 import { playerActions, playerState } from '~states/player';
-import { colors, theme } from '~styles';
+import { theme } from '~styles';
 
 const player = new Player();
 
@@ -183,28 +183,7 @@ const Home = () => {
       </SView> */}
 
       <SView width={'100%'} padding={12}>
-        <Slider
-          value={snap.volume}
-          maximumValue={1}
-          trackStyle={{ backgroundColor: colors.black[400], height: 3 }}
-          thumbStyle={{
-            backgroundColor: theme.dark.text.primary,
-            height: 24,
-            width: 24,
-            borderRadius: 100
-          }}
-          minimumTrackTintColor={theme.dark.button.primary}
-          onValueChange={(value) => {
-            player
-              .setVolume(Number(Number(value).toFixed(2)))
-              .then(() => {
-                console.log('VOLUME_UPDATED');
-              })
-              .catch(() => {
-                console.log('VOLUME_UPDATE_FAILED');
-              });
-          }}
-        />
+        <VolumeSlider />
       </SView>
     </SView>
   );

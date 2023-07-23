@@ -24,6 +24,7 @@ class Player {
     try {
       await TrackPlayer.setupPlayer(playerOptions);
       await TrackPlayer.updateOptions(updateOptions);
+      await this.setVolume(playerState.volume);
       isPlayerInitialized = true;
     } catch (error) {
       isPlayerInitialized = false;
