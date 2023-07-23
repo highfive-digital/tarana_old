@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Pressable } from 'react-native';
+import { TrackType } from 'react-native-track-player';
 import { useSnapshot } from 'valtio';
 import { SView } from '~components';
 import SText from '~components/SText/SText';
@@ -13,12 +14,12 @@ const player = new Player();
 
 const track1: Track[] = [
   {
-    url: 'http://107.182.234.197:7466/;stream.mp3', // Load media from the network
-    title: 'Radio Zindagi Romance',
-    artist: 'Radio Zindagi',
+    url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/BOM_HIN_ESTAAC.m3u8', // Load media from the network
+    title: 'Radio Mirchi Mumbai',
+    type: TrackType.HLS,
+    artist: 'Mirchi Mumbai',
     genre: 'Progressive House, Electro House',
-    artwork:
-      'http://res.cloudinary.com/megabyt-5/image/upload/v1621792541/tarana-radio-app/thumbnail-icons/india/maharashtra/mumbai/st-f6f8ee2c919f8909.png' // Load artwork from the network
+    artwork: 'https://mirchiapi.s3.amazonaws.com/radio-stations/mumbai.png' // Load artwork from the network
   }
 ];
 
@@ -26,6 +27,7 @@ const track2: Track[] = [
   {
     url: 'https://funasia.streamguys1.com/live4', // Load media from the network
     title: 'BIG FM 106.2',
+    type: TrackType.Default,
     artist: 'Tarana Audio',
     genre: 'Progressive House, Electro House',
     artwork:
@@ -48,12 +50,10 @@ const Home = () => {
 
       <SView display='flex' flexDirection='row' gap={12}>
         <Tile
-          src={
-            'http://res.cloudinary.com/megabyt-5/image/upload/v1621792541/tarana-radio-app/thumbnail-icons/india/maharashtra/mumbai/st-f6f8ee2c919f8909.png'
-          }
+          src={'https://mirchiapi.s3.amazonaws.com/radio-stations/mumbai.png'}
           size='xl'
-          title={'Radio Zindagi Romance'}
-          subTitle={'Radio Zindagi'}
+          title={'Radio Mirchi Mumbai'}
+          subTitle={'Mirchi Mumbai'}
           radius='lg'
           onClick={() => {
             player

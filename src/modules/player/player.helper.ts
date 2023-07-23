@@ -1,5 +1,6 @@
 import TrackPlayer, {
   Event,
+  TrackType,
   type NowPlayingMetadata,
   type PlaybackState
 } from 'react-native-track-player';
@@ -12,6 +13,7 @@ export const baseTrack: Track = {
   genre: '',
   title: '',
   url: '',
+  type: TrackType.Default,
   bufferPosition: 0,
   currentPosition: 0
 };

@@ -1,4 +1,4 @@
-import { type NowPlayingMetadata } from 'react-native-track-player';
+import { type NowPlayingMetadata, type TrackType } from 'react-native-track-player';
 
 export type Status =
   | 'READY'
@@ -34,6 +34,7 @@ export interface Track {
   artist: string;
   url: string;
   title: string;
+  type: TrackType;
   artwork: string;
   genre: string;
   bufferPosition?: number;
