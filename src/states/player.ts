@@ -1,4 +1,4 @@
-import { type NowPlayingMetadata } from 'react-native-track-player';
+import { type NowPlayingMetadata, type PlaybackErrorEvent } from 'react-native-track-player';
 import { proxy } from 'valtio';
 import { baseTrack } from '~modules/player/player.helper';
 import {
@@ -11,7 +11,7 @@ import {
 export const playerState: PlayerState = proxy({
   isInitialized: false,
   status: 'NONE',
-  error: '',
+  error: { code: '', message: '' },
   currentTrack: baseTrack,
   metaData: {},
   sleepTimeDuration: 0,
@@ -23,7 +23,7 @@ export const playerActions: PlayerActions = {
   setStatus: (status: Status) => {
     playerState.status = status;
   },
-  setError: (error: string) => {
+  setError: (error: PlaybackErrorEvent) => {
     playerState.error = error;
   },
   setIsInitialized: (isInitialized: boolean) => {

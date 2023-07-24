@@ -46,8 +46,18 @@ class Player {
       });
   }
 
-  async add(track: Track[]) {
+  static getPlayerInstance() {
+    return Player._instance;
+  }
+
+  async reset() {
     await TrackPlayer.reset();
+  }
+
+  async add(track: Track[], shouldReset: boolean = true) {
+    if (shouldReset) {
+      await this.reset();
+    }
     const isAdded = await TrackPlayer.add(track);
     const activeTrackIndex = await TrackPlayer.getActiveTrackIndex();
     const activeTrack = await TrackPlayer.getTrack(activeTrackIndex as number);

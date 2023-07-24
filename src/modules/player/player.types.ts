@@ -1,4 +1,8 @@
-import { type NowPlayingMetadata, type TrackType } from 'react-native-track-player';
+import {
+  type NowPlayingMetadata,
+  type PlaybackErrorEvent,
+  type TrackType
+} from 'react-native-track-player';
 
 export type Status =
   | 'READY'
@@ -13,7 +17,7 @@ export type Status =
 export interface PlayerState {
   isInitialized: boolean;
   status: Status;
-  error: string;
+  error: PlaybackErrorEvent;
   currentTrack: Track;
   metaData: NowPlayingMetadata;
   sleepTimeDuration: number;
@@ -23,7 +27,7 @@ export interface PlayerState {
 
 export interface PlayerActions {
   setStatus: (status: Status) => void;
-  setError: (status: string) => void;
+  setError: (status: PlaybackErrorEvent) => void;
   setIsInitialized: (status: boolean) => void;
   setCurrentTrack: (track: Track) => void;
   setMetaData: (metaData: NowPlayingMetadata) => void;

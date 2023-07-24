@@ -14,8 +14,8 @@ export const updateOptions: UpdateOptions = {
   android: {
     appKilledPlaybackBehavior: AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification
   },
-  capabilities: [Capability.Play, Capability.Pause, Capability.Stop],
-  compactCapabilities: [Capability.Play, Capability.Pause, Capability.Stop],
-  notificationCapabilities: [Capability.Play, Capability.Pause, Capability.Stop],
+  capabilities: [Capability.Play, Capability.Pause],
+  compactCapabilities: [Capability.Play, Capability.Pause],
+  notificationCapabilities: [Capability.Play, Capability.Pause],
   progressUpdateEventInterval: 1
 };

@@ -2,6 +2,7 @@ import TrackPlayer, {
   Event,
   TrackType,
   type NowPlayingMetadata,
+  type PlaybackErrorEvent,
   type PlaybackState
 } from 'react-native-track-player';
 import { playerActions, playerState } from '~states/player';
@@ -57,6 +58,12 @@ export const PLAYER_EVENTS = [
           playerActions.setElapsedSleepDuration(1); // replace with constant
         }
       }
+    }
+  },
+  {
+    event: Event.PlaybackError,
+    callback: (error: any) => {
+      playerActions.setError(error as PlaybackErrorEvent);
     }
   }
 ];

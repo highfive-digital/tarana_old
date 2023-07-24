@@ -110,14 +110,6 @@ const Home = () => {
       >
         <SText>PAUSE NOW</SText>
       </Pressable>
-
-      <SView marginTop={12}>
-        <SText>Elapsed Sleep Time: {snap.elapsedSleepDuration}</SText>
-      </SView>
-
-      <SView marginTop={12}>
-        <SText>Sleep Timer set for : {snap.sleepTimeDuration / 60}</SText>
-      </SView>
       <SView marginTop={50}>
         <SText>Set Sleep Timer Minutes</SText>
         <SView display='flex' flexDirection='row' gap={4}>
@@ -177,11 +169,6 @@ const Home = () => {
           </Pressable>
         </SView>
       </SView>
-      {/* <SView marginTop={20}>
-        <SText>BUFFERED_POSITION:{snap.currentTrack.bufferPosition}</SText>
-        <SText>CURRENT_POSITION:{snap.currentTrack.currentPosition}</SText>
-      </SView> */}
-
       <SView width={'100%'} padding={12}>
         <VolumeSlider />
       </SView>
