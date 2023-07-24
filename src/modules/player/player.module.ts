@@ -34,16 +34,18 @@ class Player {
   }
 
   init() {
-    this.setupPlayer()
-      .then((res) => {
-        if (res) {
+    if (!playerState.isInitialized) {
+      this.setupPlayer()
+        .then((res) => {
+          if (res) {
+            playerActions.setIsInitialized(res);
+            playerActions.setStatus('IDLE');
+          }
+        })
+        .catch((res) => {
           playerActions.setIsInitialized(res);
-          playerActions.setStatus('IDLE');
-        }
-      })
-      .catch((res) => {
-        playerActions.setIsInitialized(res);
-      });
+        });
+    }
   }
 
   static getPlayerInstance() {
