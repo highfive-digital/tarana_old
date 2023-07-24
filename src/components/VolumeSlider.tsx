@@ -3,7 +3,7 @@ import Player from '~modules/player/player.module';
 import { playerState } from '~states/player';
 import { colors, theme } from '~styles';
 
-const player = Player.getPlayerInstance();
+const player = new Player();
 
 const VolumeSlider = () => {
   return (
