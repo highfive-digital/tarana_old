@@ -15,7 +15,7 @@ class Storage {
     Storage._instance = this;
   }
 
-  static init() {
+  init() {
     // eslint-disable-next-line eqeqeq
     if (mmkvInstance == undefined) {
       mmkvInstance = new MMKV();
@@ -25,19 +25,21 @@ class Storage {
   }
 
   get(key: string, type: 'number' | 'string' | 'boolean') {
+    let data;
     switch (type) {
       case 'number':
-        mmkvInstance.getNumber(key);
+        data = mmkvInstance.getNumber(key);
         break;
       case 'boolean':
-        mmkvInstance.getBoolean(key);
+        data = mmkvInstance.getBoolean(key);
         break;
       case 'string':
-        mmkvInstance.getString(key);
+        data = mmkvInstance.getString(key);
         break;
       default:
         break;
     }
+    return data;
   }
 
   set(key: string, value: any, type: 'number' | 'string' | 'object') {

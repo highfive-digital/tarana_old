@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { Pressable } from 'react-native';
 import { TrackType } from 'react-native-track-player';
@@ -6,12 +7,10 @@ import { SView } from '~components';
 import SText from '~components/SText/SText';
 import Tile from '~components/Tile/Tile';
 import VolumeSlider from '~components/VolumeSlider';
-import Player from '~modules/player/player.module';
+import { initializeConfig } from '~helpers/intializeConfig';
 import { type Track } from '~modules/player/player.types';
 import { playerActions, playerState } from '~states/player';
 import { theme } from '~styles';
-
-const player = new Player();
 
 const track1: Track[] = [
   {
@@ -38,14 +37,14 @@ const track2: Track[] = [
 
 const Home = () => {
   const snap = useSnapshot(playerState);
+  const { player, storage } = initializeConfig();
+  const lastPlayed = JSON.parse(storage.get('current_track', 'string') as string)[0] as Track;
+
   useEffect(() => {
-    player.init();
     if (snap.status === 'IDLE') {
       player.attachEventListeners();
     }
   }, [snap.status]);
-
-  console.log('RE_RENDERING');
 
   return (
     <SView display='flex' flex={1} justifyContent='center' alignItems='center'>
@@ -59,6 +58,7 @@ const Home = () => {
           subTitle={'Mirchi Mumbai'}
           radius='lg'
           onClick={() => {
+            storage.set('current_track', track1, 'object');
             player
               .add(track1)
               .then((res) => {
@@ -79,6 +79,7 @@ const Home = () => {
           subTitle={'Tarana Audio'}
           radius='lg'
           onClick={() => {
+            storage.set('current_track', track2, 'object');
             player
               .add(track2)
               .then((res) => {
@@ -94,7 +95,8 @@ const Home = () => {
 
       <Pressable
         onPress={() => {
-          player.pause();
+          const data = storage.get('current_track', 'string');
+          console.log(data);
         }}
         accessibilityLabel='Learn more about this purple button'
         style={{
@@ -171,6 +173,10 @@ const Home = () => {
       </SView>
       <SView width={'100%'} padding={12}>
         <VolumeSlider />
+      </SView>
+
+      <SView>
+        <SText>LAST PLAYED: {lastPlayed.title}</SText>
       </SView>
     </SView>
   );
