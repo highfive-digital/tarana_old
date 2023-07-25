@@ -14,12 +14,12 @@ import { theme } from '~styles';
 
 const track1: Track[] = [
   {
-    url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/BOM_HIN_ESTAAC.m3u8', // Load media from the network
-    title: 'Radio Mirchi Mumbai',
-    type: TrackType.HLS,
-    artist: 'Mirchi Mumbai',
+    url: 'https://carol.epichosts.co.uk:8570/;', // Load media from the network
+    title: 'Diverse FM',
+    type: TrackType.Default,
+    artist: 'Tarana Audio',
     genre: 'Progressive House, Electro House',
-    artwork: 'https://mirchiapi.s3.amazonaws.com/radio-stations/mumbai.png' // Load artwork from the network
+    artwork: 'https://ugc.production.linktr.ee/a1Z0Y75zS5eakxGMEmt8_q6zRkp5Ph9Vxwzzp' // Load artwork from the network
   }
 ];
 
@@ -38,7 +38,9 @@ const track2: Track[] = [
 const Home = () => {
   const snap = useSnapshot(playerState);
   const { player, storage } = initializeConfig();
-  const lastPlayed = JSON.parse(storage.get('current_track', 'string') as string)[0] as Track;
+  const lastPlayed = JSON.parse(
+    (storage.get('current_track', 'string') as string) ?? '{}'
+  )[0] as Track;
 
   useEffect(() => {
     if (snap.status === 'IDLE') {
@@ -52,10 +54,10 @@ const Home = () => {
 
       <SView display='flex' flexDirection='row' gap={12}>
         <Tile
-          src={'https://mirchiapi.s3.amazonaws.com/radio-stations/mumbai.png'}
+          src={'https://ugc.production.linktr.ee/a1Z0Y75zS5eakxGMEmt8_q6zRkp5Ph9Vxwzzp'}
           size='xl'
-          title={'Radio Mirchi Mumbai'}
-          subTitle={'Mirchi Mumbai'}
+          title={'Diverse FM'}
+          subTitle={'Tarana Audio'}
           radius='lg'
           onClick={() => {
             storage.set('current_track', track1, 'object');
@@ -176,7 +178,7 @@ const Home = () => {
       </SView>
 
       <SView>
-        <SText>LAST PLAYED: {lastPlayed.title}</SText>
+        <SText>LAST PLAYED: {lastPlayed?.title}</SText>
       </SView>
     </SView>
   );
