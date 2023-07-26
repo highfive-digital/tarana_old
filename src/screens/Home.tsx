@@ -97,8 +97,7 @@ const Home = () => {
 
       <Pressable
         onPress={() => {
-          const data = storage.get('current_track', 'string');
-          console.log(data);
+          player.stop();
         }}
         accessibilityLabel='Learn more about this purple button'
         style={{

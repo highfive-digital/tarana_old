@@ -102,6 +102,18 @@ class Player {
     }
   }
 
+  stop() {
+    if (playerState.status === 'PLAYING') {
+      TrackPlayer.stop()
+        .then((res) => {
+          console.log('::STOPPED::', res);
+        })
+        .catch((res) => {
+          console.log('::STOP FAILED::', res);
+        });
+    }
+  }
+
   async setVolume(volume: number) {
     playerActions.setVolume(volume);
     await TrackPlayer.setVolume(volume);
