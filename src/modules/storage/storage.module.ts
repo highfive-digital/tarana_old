@@ -1,9 +1,8 @@
 import { MMKV, type NativeMMKV } from 'react-native-mmkv';
 
-let mmkvInstance: NativeMMKV;
-
 class Storage {
   private static _instance: Storage;
+  #mmkvInstance: NativeMMKV | undefined;
   constructor() {
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (Storage._instance) {
@@ -17,8 +16,8 @@ class Storage {
 
   init() {
     // eslint-disable-next-line eqeqeq
-    if (mmkvInstance == undefined) {
-      mmkvInstance = new MMKV();
+    if (this.#mmkvInstance == undefined) {
+      this.#mmkvInstance = new MMKV();
     } else {
       console.log('FAILED: Storage instance already created');
     }
@@ -28,16 +27,18 @@ class Storage {
     let data;
     switch (type) {
       case 'number':
-        data = mmkvInstance.getNumber(key);
+        data = this.#mmkvInstance != null ? this.#mmkvInstance.getNumber(key) : 0;
         break;
       case 'boolean':
-        data = mmkvInstance.getBoolean(key);
+        data = this.#mmkvInstance != null ? this.#mmkvInstance.getBoolean(key) : false;
         break;
       case 'string':
-        data = mmkvInstance.getString(key);
+        data = this.#mmkvInstance != null ? this.#mmkvInstance.getString(key) : '';
         break;
       case 'object':
-        data = JSON.parse(mmkvInstance.getString(key) ?? '{}');
+        data = JSON.parse(
+          this.#mmkvInstance != null ? this.#mmkvInstance.getString(key) ?? '{}' : '{}'
+        );
         break;
       default:
         break;
@@ -47,23 +48,33 @@ class Storage {
 
   set(key: string, value: any, type: 'number' | 'string' | 'object') {
     const transformedValue = type === 'object' ? JSON.stringify(value) : value;
-    mmkvInstance.set(key, transformedValue);
+    if (this.#mmkvInstance !== undefined) {
+      this.#mmkvInstance.set(key, transformedValue);
+    }
   }
 
   getAllKeys() {
-    return mmkvInstance.getAllKeys();
+    if (this.#mmkvInstance !== undefined) {
+      return this.#mmkvInstance.getAllKeys();
+    }
   }
 
   contains(key: string) {
-    mmkvInstance.contains(key);
+    if (this.#mmkvInstance !== undefined) {
+      return this.#mmkvInstance.contains(key);
+    }
   }
 
   delete(key: string) {
-    mmkvInstance.delete(key);
+    if (this.#mmkvInstance !== undefined) {
+      this.#mmkvInstance.delete(key);
+    }
   }
 
   clear() {
-    mmkvInstance.clearAll();
+    if (this.#mmkvInstance !== undefined) {
+      this.#mmkvInstance.clearAll();
+    }
   }
 }
 

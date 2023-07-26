@@ -19,7 +19,7 @@ class Player {
     Player._instance = this;
   }
 
-  async setupPlayer() {
+  async #setupPlayer() {
     let isPlayerInitialized = false;
     try {
       await TrackPlayer.setupPlayer(playerOptions);
@@ -35,7 +35,7 @@ class Player {
 
   init() {
     if (!playerState.isInitialized) {
-      this.setupPlayer()
+      this.#setupPlayer()
         .then((res) => {
           if (res) {
             playerActions.setIsInitialized(res);

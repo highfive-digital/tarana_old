@@ -3,6 +3,12 @@ module.exports = {
   plugins: [
     'react-native-reanimated/plugin',
     [
+      '@babel/plugin-proposal-private-methods',
+      {
+        loose: true
+      }
+    ],
+    [
       'module-resolver',
       {
         root: ['./src'],
