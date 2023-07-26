@@ -1,11 +1,11 @@
 import { Slider } from '@miblanchard/react-native-slider';
-import Player from '~modules/player/player.module';
+import { initializeConfig } from '~helpers/intializeConfig';
 import { playerState } from '~states/player';
 import { colors, theme } from '~styles';
 
-const player = new Player();
-
 const VolumeSlider = () => {
+  const { player } = initializeConfig();
+
   return (
     <Slider
       value={playerState.volume}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { Pressable } from 'react-native';
 import { TrackType } from 'react-native-track-player';
@@ -6,21 +7,19 @@ import { SView } from '~components';
 import SText from '~components/SText/SText';
 import Tile from '~components/Tile/Tile';
 import VolumeSlider from '~components/VolumeSlider';
-import Player from '~modules/player/player.module';
+import { initializeConfig } from '~helpers/intializeConfig';
 import { type Track } from '~modules/player/player.types';
 import { playerActions, playerState } from '~states/player';
 import { theme } from '~styles';
 
-const player = new Player();
-
 const track1: Track[] = [
   {
-    url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/BOM_HIN_ESTAAC.m3u8', // Load media from the network
-    title: 'Radio Mirchi Mumbai',
-    type: TrackType.HLS,
-    artist: 'Mirchi Mumbai',
+    url: 'https://carol.epichosts.co.uk:8570/;', // Load media from the network
+    title: 'Diverse FM',
+    type: TrackType.Default,
+    artist: 'Tarana Audio',
     genre: 'Progressive House, Electro House',
-    artwork: 'https://mirchiapi.s3.amazonaws.com/radio-stations/mumbai.png' // Load artwork from the network
+    artwork: 'https://ugc.production.linktr.ee/a1Z0Y75zS5eakxGMEmt8_q6zRkp5Ph9Vxwzzp' // Load artwork from the network
   }
 ];
 
@@ -38,14 +37,16 @@ const track2: Track[] = [
 
 const Home = () => {
   const snap = useSnapshot(playerState);
+  const { player, storage } = initializeConfig();
+  const lastPlayed = JSON.parse(
+    (storage.get('current_track', 'string') as string) ?? '{}'
+  )[0] as Track;
+
   useEffect(() => {
-    player.init();
     if (snap.status === 'IDLE') {
       player.attachEventListeners();
     }
   }, [snap.status]);
-
-  console.log('RE_RENDERING');
 
   return (
     <SView display='flex' flex={1} justifyContent='center' alignItems='center'>
@@ -53,12 +54,13 @@ const Home = () => {
 
       <SView display='flex' flexDirection='row' gap={12}>
         <Tile
-          src={'https://mirchiapi.s3.amazonaws.com/radio-stations/mumbai.png'}
+          src={'https://ugc.production.linktr.ee/a1Z0Y75zS5eakxGMEmt8_q6zRkp5Ph9Vxwzzp'}
           size='xl'
-          title={'Radio Mirchi Mumbai'}
-          subTitle={'Mirchi Mumbai'}
+          title={'Diverse FM'}
+          subTitle={'Tarana Audio'}
           radius='lg'
           onClick={() => {
+            storage.set('current_track', track1, 'object');
             player
               .add(track1)
               .then((res) => {
@@ -79,6 +81,7 @@ const Home = () => {
           subTitle={'Tarana Audio'}
           radius='lg'
           onClick={() => {
+            storage.set('current_track', track2, 'object');
             player
               .add(track2)
               .then((res) => {
@@ -94,7 +97,7 @@ const Home = () => {
 
       <Pressable
         onPress={() => {
-          player.pause();
+          player.stop();
         }}
         accessibilityLabel='Learn more about this purple button'
         style={{
@@ -171,6 +174,10 @@ const Home = () => {
       </SView>
       <SView width={'100%'} padding={12}>
         <VolumeSlider />
+      </SView>
+
+      <SView>
+        <SText>LAST PLAYED: {lastPlayed?.title}</SText>
       </SView>
     </SView>
   );

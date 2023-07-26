@@ -19,7 +19,7 @@ class Player {
     Player._instance = this;
   }
 
-  async setupPlayer() {
+  async #setupPlayer() {
     let isPlayerInitialized = false;
     try {
       await TrackPlayer.setupPlayer(playerOptions);
@@ -34,16 +34,18 @@ class Player {
   }
 
   init() {
-    this.setupPlayer()
-      .then((res) => {
-        if (res) {
+    if (!playerState.isInitialized) {
+      this.#setupPlayer()
+        .then((res) => {
+          if (res) {
+            playerActions.setIsInitialized(res);
+            playerActions.setStatus('IDLE');
+          }
+        })
+        .catch((res) => {
           playerActions.setIsInitialized(res);
-          playerActions.setStatus('IDLE');
-        }
-      })
-      .catch((res) => {
-        playerActions.setIsInitialized(res);
-      });
+        });
+    }
   }
 
   static getPlayerInstance() {
@@ -96,6 +98,18 @@ class Player {
         })
         .catch((res) => {
           console.log('::PAUSE FAILED::', res);
+        });
+    }
+  }
+
+  stop() {
+    if (playerState.status === 'PLAYING') {
+      TrackPlayer.stop()
+        .then((res) => {
+          console.log('::STOPPED::', res);
+        })
+        .catch((res) => {
+          console.log('::STOP FAILED::', res);
         });
     }
   }

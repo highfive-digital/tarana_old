@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { NavigationHandler } from 'navigation-react';
 import { NavigationStack, Scene } from 'navigation-react-native';
 import { StatusBar } from 'react-native';
