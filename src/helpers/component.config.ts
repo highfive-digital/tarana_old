@@ -1,5 +1,5 @@
 export const BASE_RADIO_CONFIG: any = {
-  size: 'lg',
+  size: 'xl',
   radius: 'none',
   titleFontSize: 'sm',
   subtitleFontSize: 'xs',

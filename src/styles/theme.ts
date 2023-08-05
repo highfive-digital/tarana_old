@@ -9,6 +9,7 @@ export const theme = {
     background: {
       primary: colors.white[500],
       secondary: colors.gray[500],
+      card: colors.material[900],
       none: 'transparent'
     },
     text: {
@@ -29,6 +30,7 @@ export const theme = {
     background: {
       primary: colors.black[900],
       secondary: colors.material[800],
+      card: colors.material[900],
       none: 'transparent'
     },
     text: {

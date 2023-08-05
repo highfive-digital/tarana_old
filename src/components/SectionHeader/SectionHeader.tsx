@@ -22,11 +22,12 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       </SText>
       <SPressable
         backgroundColor='transparent'
+        width={40}
         paddingVertical={12}
         borderRadius={50}
         display='flex'
         justifyContent='center'
-        alignItems='center'
+        alignItems='flex-end'
         pressableConfig={{
           onPress: () => {
             onPress();

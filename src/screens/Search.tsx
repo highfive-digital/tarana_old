@@ -185,14 +185,10 @@
 
 // export default Search;
 
-import { Text, View } from 'react-native';
+import SearchBar from '~components/SearchBar/SearchBar';
 
 const Search = () => {
-  return (
-    <View>
-      <Text>Search</Text>
-    </View>
-  );
+  return <SearchBar />;
 };
 
 export default Search;

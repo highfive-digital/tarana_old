@@ -23,7 +23,7 @@ const SearchBar = () => {
             disabled={state}
           >
             <SInput
-              backgroundColor={theme.dark.background.secondary}
+              backgroundColor={theme.dark.background.card}
               borderRadius={borderRadius.full}
               paddingHorizontal={spacing.xl}
               paddingVertical={spacing.md}
@@ -43,7 +43,7 @@ const SearchBar = () => {
           </OutsidePressHandler>
         </SView>
         <SPressable
-          backgroundColor={theme.dark.background.secondary}
+          backgroundColor={theme.dark.background.card}
           paddingHorizontal={spacing.md}
           paddingVertical={spacing.md}
           borderRadius={50}

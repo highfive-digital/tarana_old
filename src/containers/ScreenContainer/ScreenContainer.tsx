@@ -10,6 +10,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({ children }) => {
     <ScrollView
       style={{ paddingTop: spacing.md }}
       contentContainerStyle={{ paddingBottom: spacing.scroll }}
+      showsVerticalScrollIndicator={false}
     >
       {children}
     </ScrollView>

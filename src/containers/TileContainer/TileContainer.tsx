@@ -1,19 +1,20 @@
 import { FlashList } from '@shopify/flash-list';
 import React from 'react';
 import { Tile } from '~components';
-import { BASE_RADIO_CONFIG } from '~helpers/component.config';
+import { type TileStyle } from '~types/components.types';
 
 interface TileContainerProps {
   data: any;
   config: any;
-  componentConfig?: any; // add component config here
+  styleConfig: TileStyle;
   onPress: (item: any) => void;
 }
 
-const TileContainer: React.FC<TileContainerProps> = ({ data, config, onPress }) => {
+const TileContainer: React.FC<TileContainerProps> = ({ data, config, onPress, styleConfig }) => {
   return (
     <FlashList
       data={data}
+      showsHorizontalScrollIndicator={false}
       renderItem={({ item, index }) => {
         return (
           <Tile
@@ -22,9 +23,9 @@ const TileContainer: React.FC<TileContainerProps> = ({ data, config, onPress }) 
             key={index}
             onPress={onPress}
             styleConfig={{
+              ...styleConfig,
               gutterLeft: index === 0 ? 'sm' : 'xs',
-              gutterRight: index === data.length - 1 ? 'lg' : 'xs',
-              ...BASE_RADIO_CONFIG
+              gutterRight: index === data.length - 1 ? 'lg' : 'xs'
             }}
           />
         );

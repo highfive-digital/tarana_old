@@ -6,13 +6,7 @@ import SPressable from '~components/SPressable/SPressable';
 import TitleSubtitle from '~components/TitleSubtitle';
 import { dataExtractor } from '~helpers/common';
 import { borderRadius, spacing } from '~styles/utilities';
-import {
-  type BorderRadius,
-  type FontFamilyWeightType,
-  type FontSize,
-  type SpacingType,
-  type TileSize
-} from '~types/components.types';
+import { type TileStyle } from '~types/components.types';
 
 const tileSizeMap = {
   xxs: {
@@ -44,17 +38,6 @@ const tileSizeMap = {
     width: 160
   }
 };
-
-interface TileStyle {
-  size: TileSize;
-  radius: BorderRadius;
-  titleFontSize: FontSize;
-  subtitleFontSize: FontSize;
-  titleFontWeight: FontFamilyWeightType;
-  subTitleFontWeight: FontFamilyWeightType;
-  gutterRight: SpacingType;
-  gutterLeft: SpacingType;
-}
 
 interface TileConfig {
   data: any;
