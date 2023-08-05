@@ -1,6 +1,6 @@
 import React from 'react';
 import { fontSize, spacing } from '~styles/utilities';
-import { type FontSize } from '~types/components.types';
+import { type FontFamilyWeightType, type FontSize } from '~types/components.types';
 import SText from './SText/SText';
 
 interface TitleSubtitleType {
@@ -8,13 +8,18 @@ interface TitleSubtitleType {
   subTitle: string;
   titleFontSize?: FontSize;
   subtitleFontSize?: FontSize;
+  titleFontWeight?: FontFamilyWeightType;
+
+  subTitleFontWeight?: FontFamilyWeightType;
 }
 
 const TitleSubtitle: React.FC<TitleSubtitleType> = ({
   title,
   subTitle,
   titleFontSize = 'sm',
-  subtitleFontSize = 'xs'
+  subtitleFontSize = 'xs',
+  titleFontWeight = 'semibold',
+  subTitleFontWeight = 'regular'
 }) => {
   return (
     <>
@@ -22,7 +27,7 @@ const TitleSubtitle: React.FC<TitleSubtitleType> = ({
         paddingTop={spacing.xs}
         fontSize={fontSize[titleFontSize]}
         textConfig={{ ellipsizeMode: 'tail', numberOfLines: 1 }}
-        family='semibold'
+        family={titleFontWeight}
       >
         {title}
       </SText>
@@ -30,6 +35,7 @@ const TitleSubtitle: React.FC<TitleSubtitleType> = ({
         paddingTop={spacing.none}
         fontSize={fontSize[subtitleFontSize]}
         textConfig={{ ellipsizeMode: 'tail', numberOfLines: 1 }}
+        family={subTitleFontWeight}
       >
         {subTitle}
       </SText>

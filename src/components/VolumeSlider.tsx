@@ -1,5 +1,5 @@
 import { Slider } from '@miblanchard/react-native-slider';
-import { initializeConfig } from '~helpers/intializeConfig';
+import { initializeConfig } from '~helpers/intialize.config';
 import { playerState } from '~states/player';
 import { colors, theme } from '~styles';
 

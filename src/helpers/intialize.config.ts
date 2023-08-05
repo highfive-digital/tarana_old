@@ -5,7 +5,6 @@ let storage: Storage;
 let player: Player;
 
 export const initializeConfig = () => {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   if (!storage && !player) {
     storage = new Storage();
     storage.init();

@@ -4,7 +4,7 @@ import { type BaseColorType, type ThemeType } from '~types/components.types';
 
 const getViewStyles = (
   currentTheme: ThemeType = 'light',
-  color: BaseColorType = 'primary',
+  color: BaseColorType = 'none',
   rest: ViewStyle
 ) => {
   const styles = StyleSheet.create({

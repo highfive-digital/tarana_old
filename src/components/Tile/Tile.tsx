@@ -1,11 +1,18 @@
 import React from 'react';
-import { Pressable } from 'react-native';
 import { type Priority } from 'react-native-fast-image';
 import { SView } from '~components';
 import SImage from '~components/Image/SImage';
+import SPressable from '~components/SPressable/SPressable';
 import TitleSubtitle from '~components/TitleSubtitle';
-import { borderRadius } from '~styles/utilities';
-import { type BorderRadius, type FontSize, type TileSize } from '~types/components.types';
+import { dataExtractor } from '~helpers/common';
+import { borderRadius, spacing } from '~styles/utilities';
+import {
+  type BorderRadius,
+  type FontFamilyWeightType,
+  type FontSize,
+  type SpacingType,
+  type TileSize
+} from '~types/components.types';
 
 const tileSizeMap = {
   xxs: {
@@ -37,50 +44,80 @@ const tileSizeMap = {
     width: 160
   }
 };
+
+interface TileStyle {
+  size: TileSize;
+  radius: BorderRadius;
+  titleFontSize: FontSize;
+  subtitleFontSize: FontSize;
+  titleFontWeight: FontFamilyWeightType;
+  subTitleFontWeight: FontFamilyWeightType;
+  gutterRight: SpacingType;
+  gutterLeft: SpacingType;
+}
+
 interface TileConfig {
-  src: string;
-  title: string;
-  subTitle: string;
-  size?: TileSize;
-  priority?: Priority;
-  radius?: BorderRadius;
-  titleFontSize?: FontSize;
-  subtitleFontSize?: FontSize;
-  onClick?: () => void;
+  data: any;
+  config: any;
+  imageFetchPriority?: Priority;
+  styleConfig: TileStyle;
+  onPress?: (item: any) => void;
 }
 
 const Tile: React.FC<TileConfig> = ({
-  src,
-  title = '',
-  subTitle = '',
-  size = 'md',
-  priority = 'normal',
-  radius = 'xs',
-  titleFontSize = 'sm',
-  subtitleFontSize = 'xs',
-  onClick = () => {}
+  data,
+  config,
+  imageFetchPriority = 'normal',
+  styleConfig = {
+    size: 'md',
+    radius: 'xs',
+    titleFontSize: 'xs',
+    subtitleFontSize: 'xs',
+    titleFontWeight: 'semibold',
+    subTitleFontWeight: 'regular',
+    gutterRight: 'none',
+    gutterLeft: 'none'
+  },
+  onPress = () => {}
 }) => {
+  const src = dataExtractor(data, config.posterImage);
+  const title = dataExtractor(data, config.name);
+  const subTitle = dataExtractor(data, config.city);
+
   return (
-    <Pressable onPress={onClick}>
-      <SView height={tileSizeMap[size].height} width={tileSizeMap[size].width}>
+    <SPressable
+      pressableConfig={{
+        onPress: () => {
+          onPress(data);
+        }
+      }}
+      marginRight={spacing[styleConfig.gutterRight]}
+      marginLeft={spacing[styleConfig.gutterLeft]}
+    >
+      <SView
+        height={tileSizeMap[styleConfig.size].height}
+        width={tileSizeMap[styleConfig.size].width}
+      >
         <SImage
           src={src}
-          priority={priority}
-          borderRadius={borderRadius[radius]}
+          priority={imageFetchPriority}
+          borderRadius={borderRadius[styleConfig.radius]}
           height={'100%'}
           width={'100%'}
         />
       </SView>
 
-      <SView width={tileSizeMap[size].width}>
+      <SView width={tileSizeMap[styleConfig.size].width}>
         <TitleSubtitle
-          titleFontSize={titleFontSize}
-          subtitleFontSize={subtitleFontSize}
+          titleFontSize={styleConfig.titleFontSize}
+          subtitleFontSize={styleConfig.subtitleFontSize}
           title={title}
           subTitle={subTitle}
+          titleFontWeight={styleConfig.titleFontWeight}
+          subTitleFontWeight={styleConfig.subTitleFontWeight}
         />
       </SView>
-    </Pressable>
+    </SPressable>
   );
 };
 

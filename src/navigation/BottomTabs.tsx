@@ -1,13 +1,12 @@
 import { NavigationHandler } from 'navigation-react';
 import { NavigationStack, Scene, TabBar, TabBarItem } from 'navigation-react-native';
-import React from 'react';
 import { Platform } from 'react-native';
 import Home from '~screens/Home';
 import Search from '~screens/Search';
+import Settings from '~screens/Settings';
 import { theme } from '~styles';
 import { fonts } from '~styles/theme';
 import { homeNavigator, searchNavigator, settingsNavigator } from './stateNavigators';
-import Settings from '~screens/Settings';
 
 const BottomTabs = () => {
   return (
