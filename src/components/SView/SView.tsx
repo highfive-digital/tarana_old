@@ -9,7 +9,7 @@ interface SViewProps {
   viewConfig?: ViewProps;
 }
 const SView: React.FC<SViewProps & ViewStyle> = (props) => {
-  const { children, color, viewConfig, ...rest } = props;
+  const { children, color = 'none', viewConfig, ...rest } = props;
   const { styles } = getViewStyles('dark', color, rest); // use theme here
   return (
     <View style={styles.view} {...viewConfig}>

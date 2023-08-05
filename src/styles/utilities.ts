@@ -9,19 +9,22 @@ export const spacing = {
   xl: 20,
   xxl: 24,
   xxxl: 28,
-  '4xl': 32
+  '4xl': 32,
+  '5xl': 36,
+  scroll: 100
 };
 
 export const fontSize = {
   xxs: 8,
   xs: 12,
-  sm: 16,
-  md: 20,
-  lg: 24,
-  xl: 28,
-  xxl: 32,
-  xxxl: 36,
-  '4xl': 40
+  sm: 14,
+  base: 16,
+  md: 18,
+  lg: 20,
+  xl: 22,
+  xxl: 24,
+  xxxl: 28,
+  '4xl': 32
 };
 
 export const fontWeight = {

@@ -10,7 +10,7 @@ interface STextProps {
   textConfig?: TextProps;
 }
 const SText: React.FC<STextProps & TextStyle> = (props) => {
-  const { children, color, family, textConfig, ...rest } = props;
+  const { children, color = 'secondary', family, textConfig, ...rest } = props;
   const { styles } = getTextStyles('dark', color, family, rest); // use theme here
   return (
     <Text style={styles.text} {...textConfig}>

@@ -8,11 +8,13 @@ export const theme = {
   light: {
     background: {
       primary: colors.white[500],
-      secondary: colors.gray[500]
+      secondary: colors.gray[500],
+      none: 'transparent'
     },
     text: {
       primary: colors.black[800],
-      secondary: colors.gray[900]
+      secondary: colors.gray[900],
+      none: 'transparent'
     },
     button: {
       primary: colors.red[600],
@@ -25,38 +27,25 @@ export const theme = {
   },
   dark: {
     background: {
-      primary: colors.amoled[800],
-      secondary: colors.black[500]
+      primary: colors.black[900],
+      secondary: colors.material[800],
+      none: 'transparent'
     },
     text: {
-      primary: colors.gray[50],
-      secondary: colors.black[200]
+      primary: colors.black[200],
+      secondary: colors.black[300],
+      none: 'transparent'
     },
     button: {
       primary: colors.red[700],
       active: colors.red[600]
     },
     navigation: {
-      background: colors.black[800],
+      background: colors.black[900],
       inactiveColor: colors.black[200]
     }
   }
 };
-
-// export const fonts = {
-//   regular: 'Gilroy-Regular',
-//   medium: 'Gilroy-Medium',
-//   semibold: 'Gilroy-Semibold',
-//   bold: 'Gilroy-Bold'
-// };
-
-// export const fonts = {
-//   regular: 'Mont-Regular',
-//   medium: 'Mont-Book',
-//   semibold: 'Mont-SemiBold',
-//   heavy: 'Mont-Heavy',
-//   bold: 'Mont-Bold'
-// };
 
 export const fonts = {
   regular: 'ChesnaGrotesk-Regular',
