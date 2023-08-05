@@ -2,8 +2,10 @@ import { type ReactElement } from 'react';
 import { SView } from '~components';
 import PaddedView from '~components/PaddedView/PaddedView';
 import SectionHeader from '~components/SectionHeader/SectionHeader';
+import TileCardContainer from '~containers/TileCardContainer/TileCardContainer';
 import TileContainer from '~containers/TileContainer/TileContainer';
 import { spacing } from '~styles/utilities';
+import { type TileStyle } from '~types/components.types';
 
 interface SectionContainerProps {
   headerConfig: {
@@ -14,6 +16,7 @@ interface SectionContainerProps {
     component: 'TILE' | 'RADIO' | 'ARTIST' | 'RECENT';
     config: any;
     data: any;
+    styleConfig: TileStyle;
     onPress: (item: any) => void;
   };
 }
@@ -28,8 +31,20 @@ const SectionContainer: React.FC<SectionContainerProps> = ({ headerConfig, compo
         <TileContainer
           config={componentConfig.config}
           data={componentConfig.data}
+          styleConfig={componentConfig.styleConfig}
           onPress={componentConfig.onPress}
         />
+      ) : (
+        (null as unknown as ReactElement)
+      )}
+      {componentConfig.component === 'RECENT' ? (
+        <PaddedView paddingHorizontal='sm'>
+          <TileCardContainer
+            config={componentConfig.config}
+            data={componentConfig.data}
+            onPress={componentConfig.onPress}
+          />
+        </PaddedView>
       ) : (
         (null as unknown as ReactElement)
       )}

@@ -66,3 +66,5 @@ export const getTrackFromMetaData = (track: Track, config: any) => {
     type
   };
 };
+
+export const isValidArray = (arr: any[]) => Array.isArray(arr) && arr.length;
