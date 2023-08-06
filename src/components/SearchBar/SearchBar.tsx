@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Keyboard } from 'react-native';
 import OutsidePressHandler from 'react-native-outside-press';
-import PaddedView from '~components/PaddedView/PaddedView';
 import SInput from '~components/SInput/SInput';
 import SPressable from '~components/SPressable/SPressable';
 import SVGIcon from '~components/SVGIcon/SVGIcon';
 import SView from '~components/SView/SView';
+import PaddedView from '~containers/PaddedView/PaddedView';
 import { theme } from '~styles';
 import { borderRadius, fontSize, spacing } from '~styles/utilities';
 

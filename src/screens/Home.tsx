@@ -1,6 +1,7 @@
-import SearchBar from '~components/SearchBar/SearchBar';
-import ScreenContainer from '~containers/ScreenContainer/ScreenContainer';
-import SectionContainer from '~containers/SectionContainer/SectionContainer';
+import { NavigationContext } from 'navigation-react';
+import { useContext } from 'react';
+import { SearchBar } from '~components';
+import { ScreenContainer, SectionContainer } from '~containers';
 import { getTrackFromMetaData } from '~helpers/common';
 import { BASE_RADIO_CONFIG } from '~helpers/component.config';
 import { RADIO_TRACK_CONFIG, TILE_CONFIG } from '~helpers/data.config';
@@ -10,6 +11,7 @@ import data from '../assets/static/working_stations.json';
 
 const Home = () => {
   const { player } = initializeConfig();
+  const { stateNavigator } = useContext(NavigationContext);
 
   const addAndPlay = (track: Track) => {
     const cleanedTrack = getTrackFromMetaData(track, RADIO_TRACK_CONFIG);
@@ -30,8 +32,8 @@ const Home = () => {
       <SectionContainer
         headerConfig={{
           heading: 'Your Favorites',
-          onPress: function (): void {
-            throw new Error('Function not implemented.');
+          onPress: () => {
+            stateNavigator.navigate('viewAll');
           }
         }}
         componentConfig={{
@@ -48,8 +50,8 @@ const Home = () => {
       <SectionContainer
         headerConfig={{
           heading: 'Popular Stations',
-          onPress: function (): void {
-            throw new Error('Function not implemented.');
+          onPress: () => {
+            stateNavigator.navigate('viewAll');
           }
         }}
         componentConfig={{
@@ -66,8 +68,8 @@ const Home = () => {
       <SectionContainer
         headerConfig={{
           heading: 'Trending Stations',
-          onPress: function (): void {
-            throw new Error('Function not implemented.');
+          onPress: () => {
+            stateNavigator.navigate('viewAll');
           }
         }}
         componentConfig={{
@@ -85,8 +87,8 @@ const Home = () => {
       <SectionContainer
         headerConfig={{
           heading: 'Recently Played',
-          onPress: function (): void {
-            throw new Error('Function not implemented.');
+          onPress: () => {
+            stateNavigator.navigate('viewAll');
           }
         }}
         componentConfig={{
@@ -102,8 +104,8 @@ const Home = () => {
       <SectionContainer
         headerConfig={{
           heading: 'Artist Stations',
-          onPress: function (): void {
-            throw new Error('Function not implemented.');
+          onPress: () => {
+            stateNavigator.navigate('viewAll');
           }
         }}
         componentConfig={{
@@ -119,8 +121,8 @@ const Home = () => {
       <SectionContainer
         headerConfig={{
           heading: 'Artist Stations',
-          onPress: function (): void {
-            throw new Error('Function not implemented.');
+          onPress: () => {
+            stateNavigator.navigate('viewAll');
           }
         }}
         componentConfig={{

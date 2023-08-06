@@ -1,6 +1,9 @@
 import { StateNavigator } from 'navigation';
 
-const homeNavigator = new StateNavigator([{ key: 'home', trackCrumbTrail: true }]);
+const homeNavigator = new StateNavigator([
+  { key: 'home' },
+  { key: 'viewAll', trackCrumbTrail: true }
+]);
 
 const searchNavigator = new StateNavigator([{ key: 'search', trackCrumbTrail: true }]);
 
