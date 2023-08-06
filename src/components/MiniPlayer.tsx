@@ -1,3 +1,4 @@
+import { ActivityIndicator } from 'react-native';
 import { useSnapshot } from 'valtio';
 import { SPressable, SVGIcon, SView, TitleSubtitle } from '~components';
 import { initializeConfig } from '~helpers/intialize.config';
@@ -41,7 +42,23 @@ const MiniPlayer = ({ onClick }: any) => {
       <SView display='flex' flex={1} marginHorizontal={spacing.sm}>
         <TitleSubtitle title={snap.currentTrack.title} subTitle={snap.currentTrack.artist} />
       </SView>
-      <SView height={50} width={50}>
+      <SView
+        height={50}
+        display='flex'
+        flexDirection='row'
+        justifyContent='center'
+        alignItems='center'
+        columnGap={spacing.md}
+      >
+        <SPressable
+          pressableConfig={{
+            onPress: () => {
+              console.log('liked');
+            }
+          }}
+        >
+          <SVGIcon icon='HEART' height={30} width={30} fill={colors.black[50]} />
+        </SPressable>
         <SPressable
           pressableConfig={{
             onPress: () => {
@@ -49,12 +66,20 @@ const MiniPlayer = ({ onClick }: any) => {
             }
           }}
         >
-          <SVGIcon
-            icon={snap.status === 'PLAYING' ? 'STOP' : 'PLAY'}
-            height={50}
-            width={50}
-            fill={colors.red[600]}
-          />
+          {snap.status === 'BUFFERING' ? (
+            <ActivityIndicator
+              size='large'
+              style={{ height: 40, width: 40, transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] }}
+              color={colors.black[50]}
+            />
+          ) : (
+            <SVGIcon
+              icon={snap.status === 'PLAYING' ? 'STOP' : 'PLAY'}
+              height={40}
+              width={40}
+              fill={colors.black[50]}
+            />
+          )}
         </SPressable>
       </SView>
     </SPressable>
