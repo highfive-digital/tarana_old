@@ -11,24 +11,16 @@ import data from '../assets/static/working_stations.json';
 
 const Home = () => {
   const { player } = initializeConfig();
+  player.attachEventListeners();
   const { stateNavigator } = useContext(NavigationContext);
 
   const addAndPlay = (track: Track) => {
     const cleanedTrack = getTrackFromMetaData(track, RADIO_TRACK_CONFIG);
-    player
-      .add([cleanedTrack])
-      .then((res) => {
-        console.log(res);
-        player.play();
-      })
-      .catch(() => {
-        console.log('play failed');
-      });
+    player.addAndPlay([cleanedTrack]);
   };
   return (
     <ScreenContainer>
       <SearchBar />
-
       <SectionContainer
         headerConfig={{
           heading: 'Your Favorites',

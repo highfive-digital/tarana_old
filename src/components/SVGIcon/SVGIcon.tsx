@@ -1,10 +1,12 @@
-import { ArrowRight, Heart, SearchIcon } from '~assets/svgs';
+import { ArrowRight, Heart, Play, SearchIcon, Stop } from '~assets/svgs';
 import { type SVG } from '~types/components.types';
 
 const SVGMap: { [key in SVG]: { component: any } } = {
   SEARCH: { component: SearchIcon },
   HEART: { component: Heart },
-  ARROW_RIGHT: { component: ArrowRight }
+  ARROW_RIGHT: { component: ArrowRight },
+  PLAY: { component: Play },
+  STOP: { component: Stop }
 };
 
 interface SVGIconProps {

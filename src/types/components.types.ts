@@ -8,7 +8,7 @@ export type TileSize = BaseSize | XSizes;
 export type BorderRadius = SpacingType | 'none' | '5xl' | 'full';
 export type FontSize = BaseSize | XSizes | 'base' | 'xxxl' | '4xl';
 
-export type SVG = 'SEARCH' | 'HEART' | 'ARROW_RIGHT';
+export type SVG = 'SEARCH' | 'HEART' | 'ARROW_RIGHT' | 'PLAY' | 'STOP';
 
 export interface TileStyle {
   size: TileSize;

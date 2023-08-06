@@ -1,5 +1,6 @@
 import TrackPlayer from 'react-native-track-player';
 
+import { initializeConfig } from '~helpers/intialize.config';
 import { playerActions, playerState } from '~states/player';
 import { PLAYER_EVENTS, baseTrack } from './player.helper';
 import { type Status, type Track } from './player.types';
@@ -9,7 +10,6 @@ class Player {
   private static _instance: Player;
 
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (Player._instance) {
       console.warn(
         'Instantiation failed: cannot create multiple instance of Player returning existing instance'
@@ -117,6 +117,28 @@ class Player {
   async setVolume(volume: number) {
     playerActions.setVolume(volume);
     await TrackPlayer.setVolume(volume);
+  }
+
+  addAndPlay(track: Track[], storeLastPlayed: boolean = true) {
+    const { storage } = initializeConfig();
+    this.add(track)
+      .then(() => {
+        this.play();
+        if (storeLastPlayed) {
+          storage.set('current_track', track, 'object');
+        }
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }
+
+  playOrStop() {
+    if (playerState.status === 'PLAYING') {
+      this.stop();
+    } else {
+      this.play();
+    }
   }
 }
 

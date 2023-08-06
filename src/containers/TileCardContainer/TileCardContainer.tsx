@@ -1,5 +1,5 @@
 import { SView, TileCard } from '~components';
-import { isValidArray } from '~helpers/common';
+import { isValidArray } from '~helpers/validators';
 import { spacing } from '~styles/utilities';
 
 interface TileCardContainerProps {

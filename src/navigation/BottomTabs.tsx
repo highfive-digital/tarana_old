@@ -1,18 +1,19 @@
 import { NavigationHandler } from 'navigation-react';
-import { NavigationBar, NavigationStack, Scene, TabBar, TabBarItem } from 'navigation-react-native';
+import { NavigationStack, Scene, StatusBar, TabBar, TabBarItem } from 'navigation-react-native';
 import { Platform } from 'react-native';
 import Home from '~screens/Home';
 import Search from '~screens/Search';
 import Settings from '~screens/Settings';
 import ViewAll from '~screens/ViewAll';
-import { theme } from '~styles';
+import { colors, theme } from '~styles';
 import { fonts } from '~styles/theme';
 import { homeNavigator, searchNavigator, settingsNavigator } from './stateNavigators';
 
 const BottomTabs = () => {
   return (
     <>
-      <NavigationBar hidden={true} />
+      {/* <NavigationBar hidden={true} /> */}
+      <StatusBar barTintColor={colors.black[900]} />
       <TabBar
         primary={true}
         bottomTabs={true}
