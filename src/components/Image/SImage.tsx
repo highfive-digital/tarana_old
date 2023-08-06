@@ -8,7 +8,7 @@ import FastImage, {
 } from 'react-native-fast-image';
 import getImagesStyles from './sImage.styles';
 
-interface ImageConfig {
+interface SImageProps {
   src: string;
   priority?: Priority;
   fallback?: boolean;
@@ -22,7 +22,7 @@ interface ImageConfig {
   onPress?: () => void;
 }
 
-const SImage: React.FC<ImageConfig & ImageStyle> = (props) => {
+const SImage: React.FC<SImageProps & ImageStyle> = (props) => {
   const {
     src,
     priority = 'normal',
@@ -32,6 +32,7 @@ const SImage: React.FC<ImageConfig & ImageStyle> = (props) => {
     onLoad,
     onLoadEnd,
     onProgress,
+    resizeMode,
     ...imageStyles
   } = props;
   const { styles } = getImagesStyles(imageStyles);
@@ -46,6 +47,7 @@ const SImage: React.FC<ImageConfig & ImageStyle> = (props) => {
       onLoad={onLoad}
       onLoadEnd={onLoadEnd}
       onProgress={onProgress}
+      resizeMode={resizeMode}
     />
   );
 };

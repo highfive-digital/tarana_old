@@ -3,16 +3,22 @@ import {
   BottomSheetModalProvider,
   useBottomSheetTimingConfigs
 } from '@gorhom/bottom-sheet';
-import React, { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, type ReactElement } from 'react';
 import { StyleSheet } from 'react-native';
 import { Easing } from 'react-native-reanimated';
+import { useSnapshot } from 'valtio';
 import { useBottomSheetBackHandler } from '~helpers/hooks/useBottomSheetBackHandler';
+import { initializeConfig } from '~helpers/intialize.config';
+import { playerActions, playerState } from '~states/player';
 import { theme } from '~styles';
 import MiniPlayer from './MiniPlayer';
 import SText from './SText/SText';
 import SView from './SView/SView';
 
+const { storage } = initializeConfig();
+
 const SimplePlayer = () => {
+  const snap = useSnapshot(playerState);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['100%', '100%'], []);
   const handlePresentModalPress = () => {
@@ -24,6 +30,15 @@ const SimplePlayer = () => {
     easing: Easing.sin
   });
 
+  //  Check if this can be handled more efficiently
+  useEffect(() => {
+    const lastTrack =
+      snap.currentTrack.title === ''
+        ? storage.get('current_track', 'object')[0]
+        : playerState.currentTrack;
+    playerActions.setCurrentTrack(lastTrack);
+  }, [snap.currentTrack.title]);
+
   return (
     <BottomSheetModalProvider>
       <SView
@@ -34,11 +49,15 @@ const SimplePlayer = () => {
         bottom={56}
         width={'100%'}
       >
-        <MiniPlayer
-          onClick={() => {
-            handlePresentModalPress();
-          }}
-        />
+        {snap.currentTrack.title !== '' ? (
+          <MiniPlayer
+            onClick={() => {
+              handlePresentModalPress();
+            }}
+          />
+        ) : (
+          (null as unknown as ReactElement)
+        )}
         <BottomSheetModal
           ref={bottomSheetModalRef}
           index={1}
