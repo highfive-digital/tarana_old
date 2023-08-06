@@ -1,9 +1,6 @@
 import { type ReactElement } from 'react';
-import { SView } from '~components';
-import PaddedView from '~components/PaddedView/PaddedView';
-import SectionHeader from '~components/SectionHeader/SectionHeader';
-import TileCardContainer from '~containers/TileCardContainer/TileCardContainer';
-import TileContainer from '~containers/TileContainer/TileContainer';
+import { SView, SectionHeader } from '~components';
+import { PaddedView, TileCardContainer, TileContainer } from '~containers';
 import { spacing } from '~styles/utilities';
 import { type TileStyle } from '~types/components.types';
 

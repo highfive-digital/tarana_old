@@ -1,5 +1,4 @@
-import { SView } from '~components';
-import TileCard from '~components/TileCard/TileCard';
+import { SView, TileCard } from '~components';
 import { isValidArray } from '~helpers/common';
 import { spacing } from '~styles/utilities';
 
