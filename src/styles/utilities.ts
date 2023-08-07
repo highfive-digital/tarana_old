@@ -2,6 +2,7 @@ import { type BorderRadius } from '~types/components.types';
 
 export const spacing = {
   none: 0,
+  xxs: 2,
   xs: 4,
   sm: 8,
   md: 12,

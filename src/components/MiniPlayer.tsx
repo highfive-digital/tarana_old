@@ -41,7 +41,13 @@ const MiniPlayer = ({ onClick }: any) => {
           resizeMode='contain'
         />
       </SView>
-      <SView display='flex' flex={1} marginHorizontal={spacing.sm}>
+      <SView
+        display='flex'
+        flex={1}
+        marginHorizontal={spacing.md}
+        alignSelf='flex-start'
+        marginTop={spacing.xxs}
+      >
         <TitleSubtitle title={snap.currentTrack.title} subTitle={snap.currentTrack.artist} />
       </SView>
       <SView
@@ -53,15 +59,24 @@ const MiniPlayer = ({ onClick }: any) => {
         columnGap={spacing.md}
       >
         <SPressable
+          height={40}
+          width={40}
+          display='flex'
+          justifyContent='center'
+          alignItems='center'
           pressableConfig={{
             onPress: () => {
               console.log('liked');
             }
           }}
         >
-          <SVGIcon icon='HEART' height={30} width={30} fill={colors.black[50]} />
+          <SVGIcon icon='HEART' height={28} width={28} fill={colors.black[50]} />
         </SPressable>
         <SPressable
+          height={40}
+          width={40}
+          justifyContent='center'
+          alignItems='center'
           pressableConfig={{
             onPress: () => {
               player.playOrStop(snap.status === 'IDLE' ? snap.currentTrack : emptyTrack);
@@ -71,7 +86,7 @@ const MiniPlayer = ({ onClick }: any) => {
           {snap.status === 'BUFFERING' ? (
             <ActivityIndicator
               size='large'
-              style={{ height: 40, width: 40, transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] }}
+              style={{ height: 36, width: 36, transform: [{ scaleX: 0.75 }, { scaleY: 0.75 }] }}
               color={colors.black[50]}
             />
           ) : (
