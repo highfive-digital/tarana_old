@@ -1,10 +1,10 @@
 import { TextInput, type TextInputProps, type TextStyle } from 'react-native';
 import { colors } from '~styles';
-import { type BaseColorType, type FontFamilyWeightType } from '~types/components.types';
+import { type FontFamilyWeightType } from '~types/components.types';
 import getTextInputStyles from './sInput.styles';
 
 interface SInputProps {
-  color?: BaseColorType;
+  color?: string;
   family?: FontFamilyWeightType;
   textInputConfig?: TextInputProps;
 }

@@ -29,9 +29,10 @@ const SearchBar = () => {
               paddingVertical={spacing.md}
               fontSize={fontSize.md}
               height={50}
+              color={theme.dark.text.secondary}
               textInputConfig={{
                 placeholder: 'Search your favorite station',
-                placeholderTextColor: theme.dark.text.primary,
+                placeholderTextColor: theme.dark.text.secondary,
                 onFocus() {
                   setState(false);
                 },
@@ -53,7 +54,7 @@ const SearchBar = () => {
           justifyContent='center'
           alignItems='center'
         >
-          <SVGIcon icon='SEARCH' height={24} width={24} fill={theme.dark.text.primary} />
+          <SVGIcon icon='SEARCH' height={24} width={24} fill={theme.dark.text.secondary} />
         </SPressable>
       </SView>
     </PaddedView>
