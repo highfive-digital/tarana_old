@@ -1,6 +1,7 @@
 import TrackPlayer from 'react-native-track-player';
 
 import { initializeConfig } from '~helpers/intialize.config';
+import { isValidObject } from '~helpers/validators';
 import { playerActions, playerState } from '~states/player';
 import { PLAYER_EVENTS, baseTrack } from './player.helper';
 import { type Status, type Track } from './player.types';
@@ -133,7 +134,10 @@ class Player {
       });
   }
 
-  playOrStop() {
+  playOrStop(track?: Track) {
+    if (track && isValidObject(track)) {
+      this.addAndPlay([track]);
+    }
     if (playerState.status === 'PLAYING') {
       this.stop();
     } else {

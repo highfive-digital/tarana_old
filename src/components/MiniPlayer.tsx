@@ -2,12 +2,14 @@ import { ActivityIndicator } from 'react-native';
 import { useSnapshot } from 'valtio';
 import { SPressable, SVGIcon, SView, TitleSubtitle } from '~components';
 import { initializeConfig } from '~helpers/intialize.config';
+import { type Track } from '~modules/player/player.types';
 import { playerState } from '~states/player';
 import { colors, theme } from '~styles';
 import { spacing } from '~styles/utilities';
 import SImage from './Image/SImage';
 
 const { player } = initializeConfig();
+const emptyTrack: Track = {} as any;
 
 const MiniPlayer = ({ onClick }: any) => {
   const snap = useSnapshot(playerState);
@@ -62,7 +64,7 @@ const MiniPlayer = ({ onClick }: any) => {
         <SPressable
           pressableConfig={{
             onPress: () => {
-              player.playOrStop();
+              player.playOrStop(snap.status === 'IDLE' ? snap.currentTrack : emptyTrack);
             }
           }}
         >
