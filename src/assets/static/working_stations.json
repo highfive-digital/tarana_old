@@ -1462,6 +1462,23 @@
     "status": "playing"
   },
   {
+    "station_uid": "sn-fb094f96f35a23de",
+    "name": "Diverse FM Bollywood",
+    "radio_uid": "rd-z4zhuj0fgrhxisr",
+    "likes": 0,
+    "popularity": 0,
+    "frequency": "",
+    "categories": "Bollywood, 90s",
+    "website": "",
+    "city": "Delhi",
+    "state": "National Capital Territory of Delhi",
+    "country": "India",
+    "streams": "[\"https://carol.epichosts.co.uk:8570/;\"]",
+    "icon_image": "https://ugc.production.linktr.ee/a1Z0Y75zS5eakxGMEmt8_q6zRkp5Ph9Vxwzzp",
+    "player_image": "https://ugc.production.linktr.ee/a1Z0Y75zS5eakxGMEmt8_q6zRkp5Ph9Vxwzzp",
+    "status": "playing"
+  },
+  {
     "station_uid": "sn-fa67e3f04984e3c5",
     "name": "Hungama - Evergreen Bollywood",
     "radio_uid": "rd-81aff0cc3068bd12",
@@ -1478,6 +1495,7 @@
     "player_image": "https://res.cloudinary.com/megabyt-4/image/upload/v1600186812/tarana-radio-app/thumbnail-icons/india/maharashtra/mumbai/sn-fa67e3f04984e3c5.png",
     "status": "playing"
   },
+
   {
     "station_uid": "sn-fb094f96f35a23de",
     "name": "Ephphatha Radio Malayalam live",
