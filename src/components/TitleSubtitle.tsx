@@ -24,10 +24,10 @@ const TitleSubtitle: React.FC<TitleSubtitleType> = ({
   return (
     <>
       <SText
-        paddingTop={spacing.xs}
         fontSize={fontSize[titleFontSize]}
         textConfig={{ ellipsizeMode: 'tail', numberOfLines: 1 }}
         family={titleFontWeight}
+        color='primary'
       >
         {title}
       </SText>

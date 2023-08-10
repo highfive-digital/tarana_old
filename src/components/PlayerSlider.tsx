@@ -12,7 +12,7 @@ import { initializeConfig } from '~helpers/intialize.config';
 import { playerActions, playerState } from '~states/player';
 import { theme } from '~styles';
 import MiniPlayer from './MiniPlayer';
-import SText from './SText/SText';
+import PlayerExtended from './PlayerExtended';
 import SView from './SView/SView';
 
 const { storage } = initializeConfig();
@@ -20,7 +20,7 @@ const { storage } = initializeConfig();
 const SimplePlayer = () => {
   const snap = useSnapshot(playerState);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => ['100%', '100%'], []);
+  const snapPoints = useMemo(() => ['100%'], []);
   const handlePresentModalPress = () => {
     bottomSheetModalRef.current?.present();
   };
@@ -60,21 +60,15 @@ const SimplePlayer = () => {
         )}
         <BottomSheetModal
           ref={bottomSheetModalRef}
-          index={1}
-          enablePanDownToClose={false}
+          topInset={0}
           snapPoints={snapPoints}
           onChange={handleSheetPositionChange}
           backgroundStyle={backGroundStyle.bg}
           animationConfigs={animationConfigs}
+          handleIndicatorStyle={{ display: 'none' }}
+          handleComponent={null}
         >
-          <SView
-            backgroundColor={theme.dark.background.primary}
-            justifyContent='center'
-            alignItems='center'
-            flex={1}
-          >
-            <SText>Awesome 🎉</SText>
-          </SView>
+          <PlayerExtended />
         </BottomSheetModal>
       </SView>
     </BottomSheetModalProvider>
@@ -84,7 +78,8 @@ const SimplePlayer = () => {
 const backGroundStyle = StyleSheet.create({
   bg: {
     borderRadius: 0,
-    backgroundColor: theme.dark.background.primary
+    backgroundColor: theme.dark.background.primary,
+    flex: 1
   }
 });
 

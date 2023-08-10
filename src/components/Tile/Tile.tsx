@@ -90,7 +90,7 @@ const Tile: React.FC<TileConfig> = ({
         />
       </SView>
 
-      <SView width={tileSizeMap[styleConfig.size].width}>
+      <SView width={tileSizeMap[styleConfig.size].width} paddingTop={spacing.sm}>
         <TitleSubtitle
           titleFontSize={styleConfig.titleFontSize}
           subtitleFontSize={styleConfig.subtitleFontSize}

@@ -5,7 +5,7 @@ import { initializeConfig } from '~helpers/intialize.config';
 import { type Track } from '~modules/player/player.types';
 import { playerState } from '~states/player';
 import { colors, theme } from '~styles';
-import { spacing } from '~styles/utilities';
+import { borderRadius, spacing } from '~styles/utilities';
 import SImage from './Image/SImage';
 
 const { player } = initializeConfig();
@@ -39,14 +39,15 @@ const MiniPlayer = ({ onClick }: any) => {
           width={50}
           priority='normal'
           resizeMode='contain'
+          borderRadius={borderRadius.md}
         />
       </SView>
       <SView
         display='flex'
         flex={1}
         marginHorizontal={spacing.md}
-        alignSelf='flex-start'
-        marginTop={spacing.xxs}
+        alignSelf='center'
+        gap={spacing.xxs}
       >
         <TitleSubtitle title={snap.currentTrack.title} subTitle={snap.currentTrack.artist} />
       </SView>
