@@ -5,7 +5,7 @@ import SInput from '~components/SInput/SInput';
 import SPressable from '~components/SPressable/SPressable';
 import SVGIcon from '~components/SVGIcon';
 import SView from '~components/SView/SView';
-import PaddedView from '~containers/PaddedView/PaddedView';
+import PaddedView from '~containers/PaddedView';
 import { theme } from '~styles';
 import { borderRadius, fontSize, spacing } from '~styles/utilities';
 

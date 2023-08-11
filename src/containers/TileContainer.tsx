@@ -20,7 +20,6 @@ const TileContainer: React.FC<TileContainerProps> = ({ data, config, onPress, st
           <Tile
             data={item}
             config={config}
-            key={index}
             onPress={onPress}
             styleConfig={{
               ...styleConfig,
