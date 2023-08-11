@@ -34,7 +34,7 @@ export const theme = {
       none: 'transparent'
     },
     text: {
-      primary: colors.black[200],
+      primary: colors.material[100],
       secondary: colors.black[300],
       none: 'transparent'
     },

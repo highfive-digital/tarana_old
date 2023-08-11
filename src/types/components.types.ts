@@ -8,7 +8,23 @@ export type TileSize = BaseSize | XSizes;
 export type BorderRadius = SpacingType | 'none' | '5xl' | 'full';
 export type FontSize = BaseSize | XSizes | 'base' | 'xxxl' | '4xl';
 
-export type SVG = 'SEARCH' | 'HEART' | 'ARROW_RIGHT' | 'PLAY' | 'STOP';
+export type SVG =
+  | 'SEARCH'
+  | 'HEART'
+  | 'ARROW_RIGHT'
+  | 'PLAY'
+  | 'STOP'
+  | 'ARROW_DOWN'
+  | 'PLAY_CIRCLE'
+  | 'STOP_CIRCLE'
+  | 'MORE'
+  | 'PREV'
+  | 'NEXT'
+  | 'FORWARD'
+  | 'SHARE'
+  | 'SLEEP'
+  | 'HEART_FILLED'
+  | 'BACKWARD';
 
 export interface TileStyle {
   size: TileSize;

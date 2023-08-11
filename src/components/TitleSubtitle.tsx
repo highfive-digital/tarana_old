@@ -24,10 +24,10 @@ const TitleSubtitle: React.FC<TitleSubtitleType> = ({
   return (
     <>
       <SText
-        paddingTop={spacing.xs}
         fontSize={fontSize[titleFontSize]}
         textConfig={{ ellipsizeMode: 'tail', numberOfLines: 1 }}
-        family={titleFontWeight}
+        fontFamilyWeight={titleFontWeight}
+        color='primary'
       >
         {title}
       </SText>
@@ -35,7 +35,7 @@ const TitleSubtitle: React.FC<TitleSubtitleType> = ({
         paddingTop={spacing.none}
         fontSize={fontSize[subtitleFontSize]}
         textConfig={{ ellipsizeMode: 'tail', numberOfLines: 1 }}
-        family={subTitleFontWeight}
+        fontFamilyWeight={subTitleFontWeight}
       >
         {subTitle}
       </SText>

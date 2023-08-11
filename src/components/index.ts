@@ -3,12 +3,12 @@ import MiniPlayer from './MiniPlayer';
 import SInput from './SInput/SInput';
 import SPressable from './SPressable/SPressable';
 import SText from './SText/SText';
-import SVGIcon from './SVGIcon/SVGIcon';
+import SVGIcon from './SVGIcon';
 import SView from './SView/SView';
-import SearchBar from './SearchBar/SearchBar';
+import SearchBar from './SearchBar';
 import SectionHeader from './SectionHeader/SectionHeader';
-import Tile from './Tile/Tile';
-import TileCard from './TileCard/TileCard';
+import Tile from './Tile';
+import TileCard from './TileCard';
 import TitleSubtitle from './TitleSubtitle';
 
 export {

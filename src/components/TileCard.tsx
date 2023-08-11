@@ -21,9 +21,9 @@ const TileCard: React.FC<TileCardProps> = ({ data, config, onPress }) => {
       backgroundColor={theme.dark.background.card}
       padding={spacing.sm}
       display='flex'
+      borderRadius={borderRadius.md}
       flexDirection='row'
       gap={spacing.sm}
-      borderRadius={borderRadius.none}
       width={'48%'}
       pressableConfig={{
         onPress: () => {
@@ -31,14 +31,9 @@ const TileCard: React.FC<TileCardProps> = ({ data, config, onPress }) => {
         }
       }}
     >
-      <SImage src={src} height={40} width={40} />
-      <SView width={90}>
-        <TitleSubtitle
-          title={title}
-          subTitle={subTitle}
-          titleFontSize='base'
-          subtitleFontSize='sm'
-        />
+      <SImage src={src} height={44} width={44} borderRadius={borderRadius.md} />
+      <SView width={90} display='flex' alignSelf='center'>
+        <TitleSubtitle title={title} subTitle={subTitle} titleFontSize='sm' subtitleFontSize='xs' />
       </SView>
     </SPressable>
   );

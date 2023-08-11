@@ -3,7 +3,7 @@ import { Keyboard } from 'react-native';
 import OutsidePressHandler from 'react-native-outside-press';
 import SInput from '~components/SInput/SInput';
 import SPressable from '~components/SPressable/SPressable';
-import SVGIcon from '~components/SVGIcon/SVGIcon';
+import SVGIcon from '~components/SVGIcon';
 import SView from '~components/SView/SView';
 import PaddedView from '~containers/PaddedView/PaddedView';
 import { theme } from '~styles';
@@ -29,10 +29,10 @@ const SearchBar = () => {
               paddingVertical={spacing.md}
               fontSize={fontSize.md}
               height={50}
-              color={theme.dark.text.secondary}
+              color={theme.dark.text.primary}
               textInputConfig={{
                 placeholder: 'Search your favorite station',
-                placeholderTextColor: theme.dark.text.secondary,
+                placeholderTextColor: theme.dark.text.primary,
                 onFocus() {
                   setState(false);
                 },
@@ -54,7 +54,7 @@ const SearchBar = () => {
           justifyContent='center'
           alignItems='center'
         >
-          <SVGIcon icon='SEARCH' height={24} width={24} fill={theme.dark.text.secondary} />
+          <SVGIcon icon='SEARCH' height={24} width={24} fill={theme.dark.text.primary} />
         </SPressable>
       </SView>
     </PaddedView>
