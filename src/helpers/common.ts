@@ -49,7 +49,9 @@ export const getTrackFromMetaData = (track: Track, config: any) => {
   const url = JSON.parse(dataExtractor(track, config.streams))[0] || '';
   const artist = dataExtractor(track, config.artist) || '';
   const title = dataExtractor(track, config.title) || '';
-  const artwork = dataExtractor(track, config.artwork) || '';
+  const artwork =
+    dataExtractor(track, config.artwork) ||
+    'https://cdn.statically.io/gh/megabyt-dev/def-img/6b991495/radio.png'; // use better fallback image
   const genre = dataExtractor(track, config.genre) || '';
   const bufferPosition = 0;
   const currentPosition = 0;
