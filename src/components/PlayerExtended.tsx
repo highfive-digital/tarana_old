@@ -31,11 +31,40 @@ const PlayerExtended = ({ playbackInfo }: { playbackInfo: typeof playerState }) 
         flexDirection='row'
         justifyContent='space-between'
       >
-        <SVGIcon icon='ARROW_DOWN' height={24} width={24} fill={theme.dark.text.primary} />
-        <SText fontFamilyWeight='semibold' fontSize={fontSize.base} color='primary'>
-          {playbackInfo.currentTrack.title}
-        </SText>
-        <SVGIcon icon='MORE' height={24} width={24} fill={theme.dark.text.primary} />
+        <SButton
+          onPress={function (): void {
+            console.log('::DOWN::');
+          }}
+          type='ICON'
+          styleConfig={{ gutterX: 'none', gutterY: 'none', height: 40, width: 40 }}
+          iconConfig={{
+            icon: 'ARROW_DOWN',
+            size: 24,
+            fillColor: theme.dark.text.primary
+          }}
+        />
+        <SView width='70%'>
+          <SText
+            fontFamilyWeight='semibold'
+            fontSize={fontSize.base}
+            color='primary'
+            textConfig={{ ellipsizeMode: 'tail', numberOfLines: 1 }}
+          >
+            {playbackInfo.currentTrack.title}
+          </SText>
+        </SView>
+        <SButton
+          onPress={function (): void {
+            console.log('::MENU::');
+          }}
+          type='ICON'
+          styleConfig={{ gutterX: 'none', gutterY: 'none', height: 40, width: 40 }}
+          iconConfig={{
+            icon: 'MORE',
+            size: 24,
+            fillColor: theme.dark.text.primary
+          }}
+        />
       </SView>
       <SView
         display='flex'
