@@ -3,7 +3,7 @@ import { Keyboard } from 'react-native';
 import OutsidePressHandler from 'react-native-outside-press';
 import SInput from '~components/SInput/SInput';
 import SPressable from '~components/SPressable/SPressable';
-import SVGIcon from '~components/SVGIcon/SVGIcon';
+import SVGIcon from '~components/SVGIcon';
 import SView from '~components/SView/SView';
 import PaddedView from '~containers/PaddedView/PaddedView';
 import { theme } from '~styles';

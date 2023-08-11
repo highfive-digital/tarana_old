@@ -185,7 +185,7 @@
 
 // export default Search;
 
-import SearchBar from '~components/SearchBar/SearchBar';
+import SearchBar from '~components/SearchBar';
 
 const Search = () => {
   return <SearchBar />;

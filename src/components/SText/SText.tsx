@@ -6,12 +6,12 @@ import getTextStyles from './sText.styles';
 interface STextProps {
   children: React.ReactNode | undefined;
   color?: BaseColorType;
-  family?: FontFamilyWeightType;
+  fontFamilyWeight?: FontFamilyWeightType; // FontFamilyWeight is for mitigation react native falling back to default font when fontweight is set
   textConfig?: TextProps;
 }
 const SText: React.FC<STextProps & TextStyle> = (props) => {
-  const { children, color = 'secondary', family, textConfig, ...rest } = props;
-  const { styles } = getTextStyles('dark', color, family, rest); // use theme here
+  const { children, color = 'secondary', fontFamilyWeight, textConfig, ...rest } = props;
+  const { styles } = getTextStyles('dark', color, fontFamilyWeight, rest); // use theme here
   return (
     <Text style={styles.text} {...textConfig}>
       {children}

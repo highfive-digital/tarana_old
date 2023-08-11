@@ -5,10 +5,10 @@ import { type Track } from '~modules/player/player.types';
 import { playerState } from '~states/player';
 import { colors, theme } from '~styles';
 import { borderRadius, fontSize, spacing } from '~styles/utilities';
+import SButton from './Button';
 import SImage from './Image/SImage';
-import SPressable from './SPressable/SPressable';
 import SText from './SText/SText';
-import SVGIcon from './SVGIcon/SVGIcon';
+import SVGIcon from './SVGIcon';
 import SView from './SView/SView';
 import TitleSubtitle from './TitleSubtitle';
 import VolumeSlider from './VolumeSlider';
@@ -34,7 +34,7 @@ const PlayerExtended = () => {
         justifyContent='space-between'
       >
         <SVGIcon icon='ARROW_DOWN' height={24} width={24} fill={theme.dark.text.primary} />
-        <SText family='semibold' fontSize={fontSize.base} color='primary'>
+        <SText fontFamilyWeight='semibold' fontSize={fontSize.base} color='primary'>
           {snap.currentTrack.title}
         </SText>
         <SVGIcon icon='MORE' height={24} width={24} fill={theme.dark.text.primary} />
@@ -85,7 +85,7 @@ const PlayerExtended = () => {
           </SView>
         </SView>
 
-        <SView display='flex' width='100%'>
+        <SView display='flex' width='100%' marginVertical={spacing.lg}>
           <VolumeSlider />
         </SView>
         <SView
@@ -97,71 +97,81 @@ const PlayerExtended = () => {
           gap={spacing.sm}
           marginVertical={spacing.lg}
         >
-          <SPressable
-            display='flex'
-            height={40}
-            width={40}
-            justifyContent='center'
-            alignItems='center'
-          >
-            <SVGIcon icon='PREV' height={48} width={48} fill={theme.dark.text.primary} />
-          </SPressable>
-          <SPressable
-            display='flex'
-            height={40}
-            width={40}
-            justifyContent='center'
-            alignItems='center'
-          >
-            <SVGIcon icon='BACKWARD' height={24} width={24} fill={theme.dark.text.primary} />
-          </SPressable>
-
-          <SPressable
-            justifyContent='center'
-            alignItems='center'
-            pressableConfig={{
-              onPress: () => {
-                player.playOrStop(snap.status === 'IDLE' ? snap.currentTrack : emptyTrack);
-              }
+          <SButton
+            onPress={function (): void {
+              console.log('::PREV::');
             }}
-          >
-            {snap.status === 'BUFFERING' ? (
-              <ActivityIndicator
-                size='large'
-                style={{
-                  height: 80,
-                  width: 80,
-                  transform: [{ scaleX: 0.95 }, { scaleY: 0.95 }]
-                }}
-                color={theme.dark.text.primary}
-              />
-            ) : (
-              <SVGIcon
-                icon={snap.status === 'PLAYING' ? 'STOP_CIRCLE' : 'PLAY_CIRCLE'}
-                height={80}
-                width={80}
-                fill={theme.dark.text.primary}
-              />
-            )}
-          </SPressable>
-          <SPressable
-            display='flex'
-            height={40}
-            width={40}
-            justifyContent='center'
-            alignItems='center'
-          >
-            <SVGIcon icon='FORWARD' height={24} width={24} fill={theme.dark.text.primary} />
-          </SPressable>
-          <SPressable
-            display='flex'
-            height={40}
-            width={40}
-            justifyContent='center'
-            alignItems='center'
-          >
-            <SVGIcon icon='NEXT' height={48} width={48} fill={theme.dark.text.primary} />
-          </SPressable>
+            type='ICON'
+            styleConfig={{ gutterX: 'none', gutterY: 'none', height: 40, width: 40 }}
+            iconConfig={{
+              icon: 'PREV',
+              size: 48,
+              fillColor: theme.dark.text.primary
+            }}
+          />
+
+          <SButton
+            onPress={function (): void {
+              console.log('::BACKWARD::');
+            }}
+            type='ICON'
+            styleConfig={{ gutterX: 'none', gutterY: 'none', height: 40, width: 40 }}
+            iconConfig={{
+              icon: 'BACKWARD',
+              size: 24,
+              fillColor: theme.dark.text.primary
+            }}
+          />
+          {snap.status === 'BUFFERING' ? (
+            <ActivityIndicator
+              size='large'
+              style={{
+                height: 80,
+                width: 80,
+                transform: [{ scaleX: 0.95 }, { scaleY: 0.95 }]
+              }}
+              color={theme.dark.text.primary}
+            />
+          ) : (
+            <SButton
+              onPress={() => {
+                player.playOrStop(snap.status === 'IDLE' ? snap.currentTrack : emptyTrack);
+              }}
+              type='ICON'
+              styleConfig={{ gutterX: 'none', gutterY: 'none', height: 80, width: 80 }}
+              iconConfig={{
+                icon: snap.status === 'PLAYING' ? 'STOP_CIRCLE' : 'PLAY_CIRCLE',
+                size: 80,
+                fillColor: theme.dark.text.primary
+              }}
+            />
+          )}
+
+          <SButton
+            onPress={function (): void {
+              console.log('::LIKED::');
+            }}
+            type='ICON'
+            styleConfig={{ gutterX: 'none', gutterY: 'none', height: 40, width: 40 }}
+            iconConfig={{
+              icon: 'FORWARD',
+              size: 24,
+              fillColor: theme.dark.text.primary
+            }}
+          />
+
+          <SButton
+            onPress={function (): void {
+              console.log('::LIKED::');
+            }}
+            type='ICON'
+            styleConfig={{ gutterX: 'none', gutterY: 'none', height: 40, width: 40 }}
+            iconConfig={{
+              icon: 'NEXT',
+              size: 48,
+              fillColor: theme.dark.text.primary
+            }}
+          />
         </SView>
       </SView>
       <SView
@@ -173,33 +183,44 @@ const PlayerExtended = () => {
         paddingHorizontal={spacing.sm}
         paddingVertical={spacing.xs}
       >
-        <SPressable
-          display='flex'
-          height={40}
-          width={40}
-          justifyContent='center'
-          alignItems='center'
-        >
-          <SVGIcon icon='HEART' height={28} width={28} fill={theme.dark.text.primary} />
-        </SPressable>
-        <SPressable
-          display='flex'
-          height={40}
-          width={40}
-          justifyContent='center'
-          alignItems='center'
-        >
-          <SVGIcon icon='SLEEP' height={28} width={28} fill={theme.dark.text.primary} />
-        </SPressable>
-        <SPressable
-          display='flex'
-          height={40}
-          width={40}
-          justifyContent='center'
-          alignItems='center'
-        >
-          <SVGIcon icon='SHARE' height={28} width={28} fill={theme.dark.text.primary} />
-        </SPressable>
+        <SButton
+          onPress={function (): void {
+            console.log('::LIKED::');
+          }}
+          type='ICON'
+          styleConfig={{ gutterX: 'none', gutterY: 'none', height: 40, width: 40 }}
+          iconConfig={{
+            icon: 'HEART',
+            size: 28,
+            fillColor: theme.dark.text.primary
+          }}
+        />
+
+        <SButton
+          onPress={function (): void {
+            console.log('::SLEEP::');
+          }}
+          type='ICON'
+          styleConfig={{ gutterX: 'none', gutterY: 'none', height: 40, width: 40 }}
+          iconConfig={{
+            icon: 'SLEEP',
+            size: 28,
+            fillColor: theme.dark.text.primary
+          }}
+        />
+
+        <SButton
+          onPress={function (): void {
+            console.log('::SHARE::');
+          }}
+          type='ICON'
+          styleConfig={{ gutterX: 'none', gutterY: 'none', height: 40, width: 40 }}
+          iconConfig={{
+            icon: 'SHARE',
+            size: 28,
+            fillColor: theme.dark.text.primary
+          }}
+        />
       </SView>
     </SView>
   );

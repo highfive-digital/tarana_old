@@ -1,6 +1,6 @@
 import SPressable from '~components/SPressable/SPressable';
 import SText from '~components/SText/SText';
-import SVGIcon from '~components/SVGIcon/SVGIcon';
+import SVGIcon from '~components/SVGIcon';
 import SView from '~components/SView/SView';
 import { theme } from '~styles';
 
@@ -17,7 +17,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 }) => {
   return (
     <SView display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
-      <SText fontSize={20} family='medium' color='primary'>
+      <SText fontSize={20} fontFamilyWeight='medium' color='primary'>
         {heading}
       </SText>
       <SPressable
