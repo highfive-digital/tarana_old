@@ -180,8 +180,7 @@ const PlayerExtended = ({ playbackInfo }: { playbackInfo: typeof playerState }) 
         gap={spacing.lg}
         backgroundColor={theme.dark.background.card}
         borderRadius={borderRadius.full}
-        paddingHorizontal={spacing.sm}
-        paddingVertical={spacing.xs}
+        padding={spacing.md}
       >
         <SButton
           onPress={function (): void {
