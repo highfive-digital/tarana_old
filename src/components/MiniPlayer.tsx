@@ -1,9 +1,8 @@
 import { ActivityIndicator } from 'react-native';
-import { useSnapshot } from 'valtio';
 import { SPressable, SVGIcon, SView, TitleSubtitle } from '~components';
 import { initializeConfig } from '~helpers/intialize.config';
 import { type Track } from '~modules/player/player.types';
-import { playerState } from '~states/player';
+import { type playerState } from '~states/player';
 import { colors, theme } from '~styles';
 import { borderRadius, spacing } from '~styles/utilities';
 import SImage from './Image/SImage';
@@ -11,9 +10,12 @@ import SImage from './Image/SImage';
 const { player } = initializeConfig();
 const emptyTrack: Track = {} as any;
 
-const MiniPlayer = ({ onClick }: any) => {
-  const snap = useSnapshot(playerState);
+interface MiniPlayerProps {
+  playbackInfo: typeof playerState;
+  onPress: () => void;
+}
 
+const MiniPlayer: React.FC<MiniPlayerProps> = ({ onPress, playbackInfo }) => {
   return (
     <SPressable
       display='flex'
@@ -28,13 +30,13 @@ const MiniPlayer = ({ onClick }: any) => {
       backgroundColor={theme.dark.background.primary}
       pressableConfig={{
         onPress: () => {
-          onClick();
+          onPress();
         }
       }}
     >
       <SView height={50} width={50}>
         <SImage
-          src={snap.currentTrack.artwork}
+          src={playbackInfo.currentTrack.artwork}
           height={50}
           width={50}
           priority='normal'
@@ -49,7 +51,10 @@ const MiniPlayer = ({ onClick }: any) => {
         alignSelf='center'
         gap={spacing.xxs}
       >
-        <TitleSubtitle title={snap.currentTrack.title} subTitle={snap.currentTrack.artist} />
+        <TitleSubtitle
+          title={playbackInfo.currentTrack.title}
+          subTitle={playbackInfo.currentTrack.artist}
+        />
       </SView>
       <SView
         height={50}
@@ -80,11 +85,13 @@ const MiniPlayer = ({ onClick }: any) => {
           alignItems='center'
           pressableConfig={{
             onPress: () => {
-              player.playOrStop(snap.status === 'IDLE' ? snap.currentTrack : emptyTrack);
+              player.playOrStop(
+                playbackInfo.status === 'IDLE' ? playbackInfo.currentTrack : emptyTrack
+              );
             }
           }}
         >
-          {snap.status === 'BUFFERING' ? (
+          {playbackInfo.status === 'BUFFERING' ? (
             <ActivityIndicator
               size='large'
               style={{ height: 36, width: 36, transform: [{ scaleX: 0.75 }, { scaleY: 0.75 }] }}
@@ -92,7 +99,7 @@ const MiniPlayer = ({ onClick }: any) => {
             />
           ) : (
             <SVGIcon
-              icon={snap.status === 'PLAYING' ? 'STOP' : 'PLAY'}
+              icon={playbackInfo.status === 'PLAYING' ? 'STOP' : 'PLAY'}
               height={40}
               width={40}
               fill={colors.black[50]}

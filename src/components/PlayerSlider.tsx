@@ -51,9 +51,10 @@ const SimplePlayer = () => {
       >
         {snap.currentTrack.title !== '' ? (
           <MiniPlayer
-            onClick={() => {
+            onPress={() => {
               handlePresentModalPress();
             }}
+            playbackInfo={snap}
           />
         ) : (
           (null as unknown as ReactElement)
@@ -68,7 +69,7 @@ const SimplePlayer = () => {
           handleIndicatorStyle={{ display: 'none' }}
           handleComponent={null}
         >
-          <PlayerExtended />
+          <PlayerExtended playbackInfo={snap} />
         </BottomSheetModal>
       </SView>
     </BottomSheetModalProvider>

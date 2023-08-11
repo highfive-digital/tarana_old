@@ -1,8 +1,7 @@
 import { ActivityIndicator } from 'react-native';
-import { useSnapshot } from 'valtio';
 import { initializeConfig } from '~helpers/intialize.config';
 import { type Track } from '~modules/player/player.types';
-import { playerState } from '~states/player';
+import { type playerState } from '~states/player';
 import { colors, theme } from '~styles';
 import { borderRadius, fontSize, spacing } from '~styles/utilities';
 import SButton from './Button';
@@ -16,8 +15,7 @@ import VolumeSlider from './VolumeSlider';
 const { player } = initializeConfig();
 const emptyTrack: Track = {} as any;
 
-const PlayerExtended = () => {
-  const snap = useSnapshot(playerState);
+const PlayerExtended = ({ playbackInfo }: { playbackInfo: typeof playerState }) => {
   return (
     <SView
       backgroundColor={theme.dark.background.primary}
@@ -35,7 +33,7 @@ const PlayerExtended = () => {
       >
         <SVGIcon icon='ARROW_DOWN' height={24} width={24} fill={theme.dark.text.primary} />
         <SText fontFamilyWeight='semibold' fontSize={fontSize.base} color='primary'>
-          {snap.currentTrack.title}
+          {playbackInfo.currentTrack.title}
         </SText>
         <SVGIcon icon='MORE' height={24} width={24} fill={theme.dark.text.primary} />
       </SView>
@@ -50,7 +48,7 @@ const PlayerExtended = () => {
       >
         <SView overflow='hidden' width={'100%'} borderRadius={borderRadius.xxxl}>
           <SImage
-            src={snap.currentTrack.artwork}
+            src={playbackInfo.currentTrack.artwork}
             height={350}
             width={'100%'}
             resizeMode='cover'
@@ -60,8 +58,8 @@ const PlayerExtended = () => {
         <SView width='100%' marginVertical={spacing.lg} display='flex' flexDirection='row'>
           <SView width={'60%'}>
             <TitleSubtitle
-              title={snap.currentTrack.title}
-              subTitle={snap.currentTrack.artist}
+              title={playbackInfo.currentTrack.title}
+              subTitle={playbackInfo.currentTrack.artist}
               titleFontSize='xxl'
               titleFontWeight='bold'
               subtitleFontSize='md'
@@ -122,7 +120,7 @@ const PlayerExtended = () => {
               fillColor: theme.dark.text.primary
             }}
           />
-          {snap.status === 'BUFFERING' ? (
+          {playbackInfo.status === 'BUFFERING' ? (
             <ActivityIndicator
               size='large'
               style={{
@@ -135,12 +133,14 @@ const PlayerExtended = () => {
           ) : (
             <SButton
               onPress={() => {
-                player.playOrStop(snap.status === 'IDLE' ? snap.currentTrack : emptyTrack);
+                player.playOrStop(
+                  playbackInfo.status === 'IDLE' ? playbackInfo.currentTrack : emptyTrack
+                );
               }}
               type='ICON'
               styleConfig={{ gutterX: 'none', gutterY: 'none', height: 80, width: 80 }}
               iconConfig={{
-                icon: snap.status === 'PLAYING' ? 'STOP_CIRCLE' : 'PLAY_CIRCLE',
+                icon: playbackInfo.status === 'PLAYING' ? 'STOP_CIRCLE' : 'PLAY_CIRCLE',
                 size: 80,
                 fillColor: theme.dark.text.primary
               }}
