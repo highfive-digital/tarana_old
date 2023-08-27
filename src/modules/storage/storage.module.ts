@@ -4,7 +4,6 @@ class Storage {
   private static _instance: Storage;
   #mmkvInstance: NativeMMKV | undefined;
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (Storage._instance) {
       console.warn(
         'Instantiation failed: cannot create multiple instance of Storage returning existing instance'

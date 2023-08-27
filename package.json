@@ -16,6 +16,7 @@
     "@gorhom/bottom-sheet": "^4",
     "@miblanchard/react-native-slider": "^2.3.1",
     "@shopify/flash-list": "^1.5.0",
+    "@tanstack/react-query": "^5.0.0-beta.20",
     "navigation": "^6.2.0",
     "navigation-react": "^4.5.1",
     "navigation-react-native": "^9.4.1",
@@ -58,6 +59,7 @@
     "lint-staged": "^14.0.1",
     "metro-react-native-babel-preset": "0.77.0",
     "prettier": "^3.0.2",
+    "react-native-dotenv": "^3.4.9",
     "react-test-renderer": "18.2.0",
     "typescript": "5.2.2"
   },
