@@ -3,14 +3,14 @@ import { useContext } from 'react';
 import { SearchBar } from '~components';
 import { ScreenContainer, SectionContainer } from '~containers';
 import { getTrackFromMetaData } from '~helpers/common';
-import { ARTIST_RADIO_CONFIG, BASE_RADIO_CONFIG } from '~helpers/component.config';
+import { BASE_RADIO_CONFIG } from '~helpers/component.config';
 import { RADIO_TRACK_CONFIG, TILE_CONFIG } from '~helpers/data.config';
 import { initializeConfig } from '~helpers/intialize.config';
 import { type Track } from '~modules/player/player.types';
 import data from '../assets/static/working_stations.json';
 
+const { player } = initializeConfig();
 const Home = () => {
-  const { player } = initializeConfig();
   player.attachEventListeners();
   const { stateNavigator } = useContext(NavigationContext);
 
@@ -33,24 +33,6 @@ const Home = () => {
           config: TILE_CONFIG,
           data: data.slice(101, 105),
           styleConfig: BASE_RADIO_CONFIG,
-          onPress: (item: Track) => {
-            addAndPlay(item);
-          }
-        }}
-      />
-
-      <SectionContainer
-        headerConfig={{
-          heading: 'Artist Stations',
-          onPress: () => {
-            stateNavigator.navigate('viewAll');
-          }
-        }}
-        componentConfig={{
-          component: 'TILE',
-          config: TILE_CONFIG,
-          styleConfig: ARTIST_RADIO_CONFIG,
-          data: data.slice(30, 42),
           onPress: (item: Track) => {
             addAndPlay(item);
           }
