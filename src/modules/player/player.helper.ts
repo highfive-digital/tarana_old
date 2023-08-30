@@ -16,7 +16,9 @@ export const baseTrack: Track = {
   url: '',
   type: TrackType.Default,
   bufferPosition: 0,
-  currentPosition: 0
+  currentPosition: 0,
+  blurHash: '',
+  dominantColor: ''
 };
 
 export const PLAYER_EVENTS = [

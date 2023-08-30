@@ -46,7 +46,7 @@ export const dataExtractor = (obj: NestedObject, key: string): any | null => {
 };
 
 export const getTrackFromMetaData = (track: Track, config: any) => {
-  const url = JSON.parse(dataExtractor(track, config.streams))[0] || '';
+  const url = dataExtractor(track, config.stream) || '';
   const artist = dataExtractor(track, config.artist) || '';
   const title = dataExtractor(track, config.title) || '';
   const artwork =
@@ -56,6 +56,8 @@ export const getTrackFromMetaData = (track: Track, config: any) => {
   const bufferPosition = 0;
   const currentPosition = 0;
   const type: TrackType = url.includes('m3u8') ? TrackType.HLS : TrackType.Default;
+  const blurHash = dataExtractor(track, config.blurHash);
+  const dominantColor = dataExtractor(track, config.dominantColor);
 
   return {
     url,
@@ -65,6 +67,8 @@ export const getTrackFromMetaData = (track: Track, config: any) => {
     bufferPosition,
     currentPosition,
     genre,
-    type
+    type,
+    dominantColor,
+    blurHash
   };
 };

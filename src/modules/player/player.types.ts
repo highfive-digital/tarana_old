@@ -45,4 +45,6 @@ export interface Track {
   genre: string;
   bufferPosition?: number;
   currentPosition?: number;
+  blurHash?: string;
+  dominantColor?: string;
 }

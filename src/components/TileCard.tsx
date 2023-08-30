@@ -16,6 +16,7 @@ const TileCard: React.FC<TileCardProps> = ({ data, config, onPress }) => {
   const src = dataExtractor(data, config.posterImage);
   const title = dataExtractor(data, config.name);
   const subTitle = dataExtractor(data, config.city);
+  const dominantColor = dataExtractor(data, config?.dominantColor) || 'transparent';
   return (
     <SPressable
       backgroundColor={theme.dark.background.card}
@@ -30,6 +31,7 @@ const TileCard: React.FC<TileCardProps> = ({ data, config, onPress }) => {
           onPress(data);
         }
       }}
+      borderStartColor={dominantColor}
     >
       <SImage src={src} height={44} width={44} borderRadius={borderRadius.md} />
       <SView width={90} display='flex' alignSelf='center'>

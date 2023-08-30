@@ -75,12 +75,17 @@ const PlayerExtended = ({ playbackInfo }: { playbackInfo: typeof playerState }) 
         marginVertical={spacing.lg}
         paddingHorizontal={spacing.none}
       >
-        <SView overflow='hidden' width={'100%'} borderRadius={borderRadius.xxxl}>
+        <SView
+          overflow='hidden'
+          width={'100%'}
+          borderRadius={borderRadius.xxxl}
+          backgroundColor={playbackInfo.currentTrack.dominantColor}
+        >
           <SImage
             src={playbackInfo.currentTrack.artwork}
             height={350}
             width={'100%'}
-            resizeMode='cover'
+            resizeMode='contain'
             borderRadius={borderRadius.xxxl}
           />
         </SView>

@@ -34,7 +34,12 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({ onPress, playbackInfo }) => {
         }
       }}
     >
-      <SView height={50} width={50}>
+      <SView
+        height={50}
+        width={50}
+        backgroundColor={playbackInfo.currentTrack.dominantColor}
+        borderRadius={borderRadius.md}
+      >
         <SImage
           src={playbackInfo.currentTrack.artwork}
           height={50}
@@ -85,6 +90,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({ onPress, playbackInfo }) => {
           alignItems='center'
           pressableConfig={{
             onPress: () => {
+              console.log(playbackInfo.status, JSON.stringify(playbackInfo.currentTrack, null, 2));
               player.playOrStop(
                 playbackInfo.status === 'IDLE' ? playbackInfo.currentTrack : emptyTrack
               );
