@@ -1,4 +1,5 @@
 import { BASE_API_URL } from '@env';
+import { type Response } from '~types/components.types';
 import http from './http';
 
 const baseURL = BASE_API_URL;
@@ -16,10 +17,10 @@ const endpoints = {
     locationType: 'city' | 'state' | 'country',
     location: string
   ) => {
-    const data = await http(`${baseURL}station/${locationType}${location}`, {
+    const data = await http(`${baseURL}/station/${locationType}/${location}`, {
       method: 'GET'
     });
-    return data;
+    return data as Response;
   },
 
   getStationByTags: async (tags: string) => {
@@ -29,7 +30,7 @@ const endpoints = {
         name: tags
       }
     });
-    return data;
+    return data as Response;
   },
 
   getPopularStation: async (locationType: 'city' | 'state' | 'country', locationId: string) => {
@@ -40,7 +41,7 @@ const endpoints = {
         locationId
       }
     });
-    return data;
+    return data as Response;
   },
 
   updateStreamStatus: async (streamId: string, streamStatus: boolean) => {
@@ -51,7 +52,7 @@ const endpoints = {
         streamStatus
       })
     });
-    return data;
+    return data as Response;
   },
 
   likeStation: async (radioId: string, likeAction: 'LIKE' | 'UNLIKE', city: string) => {
@@ -63,7 +64,7 @@ const endpoints = {
         city
       }
     });
-    return data;
+    return data as Response;
   },
 
   updatePlayCount: async (radioId: string, city: string) => {
@@ -74,7 +75,7 @@ const endpoints = {
         city
       }
     });
-    return data;
+    return data as Response;
   },
 
   searchStation: async (term: string, limit: number, offset: number) => {
@@ -86,7 +87,7 @@ const endpoints = {
         offset
       }
     });
-    return data;
+    return data as Response;
   }
 };
 

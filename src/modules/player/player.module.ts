@@ -135,7 +135,7 @@ class Player {
   }
 
   playOrStop(track?: Track) {
-    if (track && isValidObject(track)) {
+    if (playerState.status === 'IDLE' && track && isValidObject(track)) {
       this.addAndPlay([track]);
     }
     if (playerState.status === 'PLAYING') {

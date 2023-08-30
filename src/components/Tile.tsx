@@ -66,6 +66,7 @@ const Tile: React.FC<TileConfig> = ({
   const src = dataExtractor(data, config.posterImage);
   const title = dataExtractor(data, config.name);
   const subTitle = dataExtractor(data, config.city);
+  const dominantColor = dataExtractor(data, config.dominantColor);
 
   return (
     <SPressable
@@ -76,10 +77,13 @@ const Tile: React.FC<TileConfig> = ({
       }}
       marginRight={spacing[styleConfig.gutterRight]}
       marginLeft={spacing[styleConfig.gutterLeft]}
+      overflow='hidden'
     >
       <SView
         height={tileSizeMap[styleConfig.size].height}
         width={tileSizeMap[styleConfig.size].width}
+        backgroundColor={dominantColor}
+        borderRadius={borderRadius[styleConfig.radius]}
       >
         <SImage
           src={src}
@@ -87,6 +91,7 @@ const Tile: React.FC<TileConfig> = ({
           borderRadius={borderRadius[styleConfig.radius]}
           height={'100%'}
           width={'100%'}
+          resizeMode='contain'
         />
       </SView>
 
