@@ -79,7 +79,7 @@ const endpoints = {
   },
 
   searchStation: async (term: string, limit: number, offset: number) => {
-    const data = await http(`${baseURL}${routes.getStationByTags}`, {
+    const data = await http(`${baseURL}${routes.searchStation}`, {
       method: 'GET',
       params: {
         term,

@@ -11,14 +11,13 @@ import endpoints from '~modules/network/endpoints';
 import { type Track } from '~modules/player/player.types';
 
 const { player } = initializeConfig();
+const addAndPlay = (track: Track) => {
+  const cleanedTrack = getTrackFromMetaData(track, RADIO_TRACK_CONFIG);
+  player.addAndPlay([cleanedTrack]);
+};
 const Home = () => {
   player.attachEventListeners();
   const { stateNavigator } = useContext(NavigationContext);
-
-  const addAndPlay = (track: Track) => {
-    const cleanedTrack = getTrackFromMetaData(track, RADIO_TRACK_CONFIG);
-    player.addAndPlay([cleanedTrack]);
-  };
 
   const { data: cityData, isSuccess } = useFetch({
     queryKey: ['home'],
@@ -27,7 +26,7 @@ const Home = () => {
 
   return (
     <ScreenContainer>
-      <SearchBar />
+      <SearchBar onChange={() => {}} onEnter={() => {}} />
       <SectionContainer
         headerConfig={{
           heading: 'Your Favorites',

@@ -3,17 +3,18 @@ import { SView, SectionHeader } from '~components';
 import { PaddedView, TileCardContainer, TileContainer } from '~containers';
 import { spacing } from '~styles/utilities';
 import { type TileStyle } from '~types/components.types';
+import ActionCardContainer from './ActionCardContainer';
 
 interface SectionContainerProps {
   headerConfig: {
     heading: string;
-    onPress: () => void;
+    onPress?: () => void;
   };
   componentConfig: {
-    component: 'TILE' | 'RADIO' | 'ARTIST' | 'RECENT';
-    config: any;
+    component: 'TILE' | 'RADIO' | 'ARTIST' | 'RECENT' | 'SEARCH_HISTORY';
     data: any;
-    styleConfig: TileStyle;
+    config: any;
+    styleConfig: TileStyle | any;
     onPress: (item: any) => void;
   };
 }
@@ -41,6 +42,13 @@ const SectionContainer: React.FC<SectionContainerProps> = ({ headerConfig, compo
             data={componentConfig.data}
             onPress={componentConfig.onPress}
           />
+        </PaddedView>
+      ) : (
+        (null as unknown as ReactElement)
+      )}
+      {componentConfig.component === 'SEARCH_HISTORY' ? (
+        <PaddedView paddingHorizontal='sm'>
+          <ActionCardContainer historyData={componentConfig.data} />
         </PaddedView>
       ) : (
         (null as unknown as ReactElement)

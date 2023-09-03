@@ -9,7 +9,13 @@ import PaddedView from '~containers/PaddedView';
 import { theme } from '~styles';
 import { borderRadius, fontSize, spacing } from '~styles/utilities';
 
-const SearchBar = () => {
+interface SearchBarProps {
+  onChange: (text: string) => void;
+  onEnter: (text: string) => void;
+  onClear?: () => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onChange, onEnter }) => {
   const [state, setState] = useState(true);
   return (
     <PaddedView paddingHorizontal='sm'>
@@ -37,7 +43,10 @@ const SearchBar = () => {
                   setState(false);
                 },
                 onChangeText(text: string) {
-                  console.log(text);
+                  onChange(text);
+                },
+                onSubmitEditing(e) {
+                  onEnter(e.nativeEvent.text);
                 }
               }}
             />
