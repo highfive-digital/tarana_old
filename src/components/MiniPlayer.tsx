@@ -81,7 +81,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({ onPress, playbackInfo }) => {
             }
           }}
         >
-          <SVGIcon icon='HEART' height={28} width={28} fill={colors.black[50]} />
+          <SVGIcon icon='HEART' height={28} width={28} fill={theme.dark.text.primary} />
         </SPressable>
         <SPressable
           height={40}
@@ -101,14 +101,14 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({ onPress, playbackInfo }) => {
             <ActivityIndicator
               size='large'
               style={{ height: 36, width: 36, transform: [{ scaleX: 0.75 }, { scaleY: 0.75 }] }}
-              color={colors.black[50]}
+              color={theme.dark.text.primary}
             />
           ) : (
             <SVGIcon
               icon={playbackInfo.status === 'PLAYING' ? 'STOP' : 'PLAY'}
               height={40}
               width={40}
-              fill={colors.black[50]}
+              fill={theme.dark.text.primary}
             />
           )}
         </SPressable>

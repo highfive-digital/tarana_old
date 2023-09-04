@@ -1,4 +1,4 @@
-import { colors } from '~styles';
+import { theme } from '~styles';
 import { fontSize, spacing } from '~styles/utilities';
 import SPressable from './SPressable/SPressable';
 import SText from './SText/SText';
@@ -7,17 +7,18 @@ import SView from './SView/SView';
 
 const ActionCard = ({ text }: { text: string }) => {
   return (
-    <SPressable>
-      <SView
-        display='flex'
-        flexDirection='row'
-        justifyContent='space-between'
-        paddingVertical={spacing.lg}
-        alignItems='center'
-      >
+    <SPressable
+      display='flex'
+      flexDirection='row'
+      justifyContent='space-between'
+      paddingVertical={spacing.lg}
+      alignItems='center'
+    >
+      <SView display='flex' flexDirection='row' gap={spacing.sm} alignItems='center'>
+        <SVGIcon icon='HISTORY' height={20} width={20} fill={theme.dark.text.secondary} />
         <SText fontSize={fontSize.base}>{text}</SText>
-        <SVGIcon icon='RECENT_SEARCH' height={16} width={16} fill={colors.white[700]} />
       </SView>
+      <SVGIcon icon='RECENT_SEARCH' height={24} width={24} fill={theme.dark.text.primary} />
     </SPressable>
   );
 };

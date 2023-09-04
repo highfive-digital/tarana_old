@@ -4,6 +4,7 @@ import SText from '~components/SText/SText';
 import SVGIcon from '~components/SVGIcon';
 import SView from '~components/SView/SView';
 import { theme } from '~styles';
+import { fontSize } from '~styles/utilities';
 
 interface SectionHeaderProps {
   heading: string;
@@ -18,7 +19,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 }) => {
   return (
     <SView display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
-      <SText fontSize={20} fontFamilyWeight='medium' color='primary'>
+      <SText fontSize={fontSize.md} fontFamilyWeight='medium' color='primary'>
         {heading}
       </SText>
       {onPress ? (

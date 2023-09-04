@@ -2,10 +2,12 @@ import {
   ArrowDown,
   ArrowRight,
   Backward10,
+  Close,
   Forward10,
   Headphone,
   Heart,
   HeartFilled,
+  History,
   MoreMenu,
   New,
   NextPlay,
@@ -42,7 +44,9 @@ const SVGMap: { [key in SVG]: { component: any } } = {
   NEW: { component: New },
   TRENDING: { component: Trending },
   HEADPHONE: { component: Headphone },
-  RECENT_SEARCH: { component: RecentSearch }
+  RECENT_SEARCH: { component: RecentSearch },
+  HISTORY: { component: History },
+  CLOSE: { component: Close }
 };
 
 interface SVGIconProps {

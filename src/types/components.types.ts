@@ -28,6 +28,8 @@ export type SVG =
   | 'NEW'
   | 'TRENDING'
   | 'HEADPHONE'
+  | 'HISTORY'
+  | 'CLOSE'
   | 'RECENT_SEARCH';
 
 export interface TileStyle {
