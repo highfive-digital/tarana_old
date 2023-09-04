@@ -3,14 +3,17 @@ import { type Response } from '~types/components.types';
 
 const useFetch = ({
   queryKey,
-  queryFn
+  queryFn,
+  shouldFetchOnLoad = true
 }: {
   queryKey: string[];
   queryFn: (param?: any) => Promise<Response>;
+  shouldFetchOnLoad?: boolean;
 }) => {
   const { isError, isLoading, isFetched, refetch, data, isSuccess, isPending } = useQuery({
     queryKey,
-    queryFn
+    queryFn,
+    enabled: shouldFetchOnLoad
   });
 
   return { isError, isLoading, isFetched, refetch, data, isSuccess, isPending };

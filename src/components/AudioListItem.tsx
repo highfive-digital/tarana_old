@@ -18,6 +18,7 @@ const AudioListItem: React.FC<AudioListItemProps> = ({ data, config, onPress }) 
   const src = dataExtractor(data, config.posterImage);
   const title = dataExtractor(data, config.name);
   const subTitle = dataExtractor(data, config.city);
+  const dominantColor = dataExtractor(data, config.dominantColor);
 
   return (
     <PaddedView paddingHorizontal='sm'>
@@ -27,7 +28,7 @@ const AudioListItem: React.FC<AudioListItemProps> = ({ data, config, onPress }) 
         flexDirection='row'
         alignItems='center'
         justifyContent='space-between'
-        borderRadius={borderRadius.lg}
+        borderRadius={borderRadius.md}
         paddingVertical={spacing.xs}
         marginVertical={spacing.xs}
         pressableConfig={{
@@ -43,8 +44,14 @@ const AudioListItem: React.FC<AudioListItemProps> = ({ data, config, onPress }) 
           width={'75%'}
           alignItems='center'
         >
-          <SView>
-            <SImage src={src} height={50} width={50} borderRadius={borderRadius.lg} />
+          <SView backgroundColor={dominantColor} borderRadius={borderRadius.md}>
+            <SImage
+              src={src}
+              height={50}
+              width={50}
+              borderRadius={borderRadius.md}
+              resizeMode='contain'
+            />
           </SView>
           <SView width={'90%'}>
             <TitleSubtitle

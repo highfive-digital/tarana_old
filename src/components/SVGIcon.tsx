@@ -3,18 +3,22 @@ import {
   ArrowRight,
   Backward10,
   Forward10,
+  Headphone,
   Heart,
   HeartFilled,
   MoreMenu,
+  New,
   NextPlay,
   Play,
   PlayCircle,
   PrevPlay,
+  RecentSearch,
   SearchIcon,
   Share,
   Sleep,
   Stop,
-  StopCircle
+  StopCircle,
+  Trending
 } from '~assets/svgs';
 import { type SVG } from '~types/components.types';
 
@@ -34,7 +38,11 @@ const SVGMap: { [key in SVG]: { component: any } } = {
   BACKWARD: { component: Backward10 },
   SHARE: { component: Share },
   SLEEP: { component: Sleep },
-  HEART_FILLED: { component: HeartFilled }
+  HEART_FILLED: { component: HeartFilled },
+  NEW: { component: New },
+  TRENDING: { component: Trending },
+  HEADPHONE: { component: Headphone },
+  RECENT_SEARCH: { component: RecentSearch }
 };
 
 interface SVGIconProps {

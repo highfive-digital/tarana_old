@@ -24,7 +24,11 @@ export type SVG =
   | 'SHARE'
   | 'SLEEP'
   | 'HEART_FILLED'
-  | 'BACKWARD';
+  | 'BACKWARD'
+  | 'NEW'
+  | 'TRENDING'
+  | 'HEADPHONE'
+  | 'RECENT_SEARCH';
 
 export interface TileStyle {
   size: TileSize;
@@ -42,4 +46,19 @@ export interface Response {
   data: any;
   code: number;
   error: string;
+}
+
+export interface ChipProps {
+  textConfig: {
+    text: string;
+    fontSize: FontSize;
+    fontWeight: 'regular' | 'medium' | 'bold' | 'semibold';
+  };
+  iconConfig?: {
+    icon?: SVG;
+    height: number;
+    width: number;
+    fill: string;
+  };
+  onPress?: (params?: any) => void;
 }
