@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { TextInput, type TextInputProps, type TextStyle } from 'react-native';
 import { colors } from '~styles';
 import { type FontFamilyWeightType } from '~types/components.types';
@@ -9,7 +10,7 @@ interface SInputProps {
   textInputConfig?: TextInputProps;
 }
 
-const SInput: React.FC<TextStyle & SInputProps> = (props) => {
+const SInput = forwardRef((props: SInputProps & TextStyle, ref: React.Ref<TextInput>) => {
   const { family, textInputConfig, ...rest } = props;
   const { styles } = getTextInputStyles(family, rest); // use theme here
   return (
@@ -17,9 +18,10 @@ const SInput: React.FC<TextStyle & SInputProps> = (props) => {
       placeholder='Search your favorite Station'
       style={styles.textInput}
       cursorColor={colors.red[600]}
+      ref={ref}
       {...textInputConfig}
     />
   );
-};
+});
 
 export default SInput;

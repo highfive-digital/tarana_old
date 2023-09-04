@@ -2,7 +2,7 @@ import { colors } from '~styles';
 import { type ChipProps } from '~types/components.types';
 
 export const BASE_RADIO_CONFIG: any = {
-  size: 'xl',
+  size: 'lg',
   radius: 'md',
   titleFontSize: 'sm',
   subtitleFontSize: 'xs',

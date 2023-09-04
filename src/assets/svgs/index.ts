@@ -1,10 +1,12 @@
 import ArrowDown from './arrow_down.svg';
 import ArrowRight from './arrow_right.svg';
 import Backward10 from './backward_10.svg';
+import Close from './close.svg';
 import Forward10 from './forward_10.svg';
 import Headphone from './headphone.svg';
 import Heart from './heart.svg';
 import HeartFilled from './heart_fill.svg';
+import History from './history.svg';
 import MoreMenu from './more.svg';
 import New from './new.svg';
 import NextPlay from './next_play.svg';
@@ -23,10 +25,12 @@ export {
   ArrowDown,
   ArrowRight,
   Backward10,
+  Close,
   Forward10,
   Headphone,
   Heart,
   HeartFilled,
+  History,
   MoreMenu,
   New,
   NextPlay,
