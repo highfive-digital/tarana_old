@@ -3,7 +3,7 @@ import { type ChipProps } from '~types/components.types';
 
 export const BASE_RADIO_CONFIG: any = {
   size: 'lg',
-  radius: 'md',
+  radius: 'xl',
   titleFontSize: 'sm',
   subtitleFontSize: 'xs',
   titleFontWeight: 'semibold',

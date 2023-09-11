@@ -44,12 +44,12 @@ const AudioListItem: React.FC<AudioListItemProps> = ({ data, config, onPress }) 
           width={'75%'}
           alignItems='center'
         >
-          <SView backgroundColor={dominantColor} borderRadius={borderRadius.md}>
+          <SView backgroundColor={dominantColor} borderRadius={borderRadius.xl}>
             <SImage
               src={src}
-              height={50}
-              width={50}
-              borderRadius={borderRadius.md}
+              height={60}
+              width={60}
+              borderRadius={borderRadius.xl}
               resizeMode='contain'
             />
           </SView>

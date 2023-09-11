@@ -50,8 +50,8 @@ export const theme = {
 };
 
 export const fonts = {
-  regular: 'ChesnaGrotesk-Regular',
-  medium: 'ChesnaGrotesk-Medium',
-  semibold: 'ChesnaGrotesk-SemiBold',
-  bold: 'ChesnaGrotesk-Bold'
+  regular: 'Gilroy-Regular',
+  medium: 'Gilroy-Medium',
+  semibold: 'Gilroy-Semibold',
+  bold: 'Gilroy-Bold'
 };

@@ -29,15 +29,12 @@ const Home = () => {
       <SearchBar onChange={() => {}} onEnter={() => {}} />
       <SectionContainer
         headerConfig={{
-          heading: 'Your Favorites',
-          onPress: () => {
-            stateNavigator.navigate('viewAll');
-          }
+          heading: 'Recently Played'
         }}
         componentConfig={{
           component: 'RECENT',
           config: CITY_RADIO_TILE_CONFIG,
-          data: cityData?.data.slice(10, 14),
+          data: cityData?.data.slice(10, 20),
           styleConfig: BASE_RADIO_CONFIG,
           onPress: (item: Track) => {
             addAndPlay(item);

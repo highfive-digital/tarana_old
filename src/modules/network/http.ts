@@ -22,14 +22,18 @@ async function http<T>(url: string, options: HttpOptions = {}): Promise<T | null
 
   const requestOptions: RequestInit = {
     method,
-    headers: {
-      'Content-Type': 'application/json',
-      ...headers
-    }
+    headers: headers as HeadersInit_
   };
 
-  if (body) {
-    requestOptions.body = JSON.stringify(body);
+  if (body && (method === 'POST' || method === 'PUT')) {
+    if (body instanceof FormData) {
+      requestOptions.body = body;
+    } else {
+      (requestOptions.headers as Record<string, string>)['Content-Type'] = 'application/json';
+      requestOptions.body = JSON.stringify(body);
+    }
+  } else if (body && method !== 'POST' && method !== 'PUT') {
+    throw new Error('Request body is only supported for POST and PUT methods');
   }
 
   let requestUrl = url;
