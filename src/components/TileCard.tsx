@@ -11,8 +11,6 @@ interface TileCardProps {
 
 const TileCard: React.FC<TileCardProps> = ({ data, config, onPress }) => {
   const src = dataExtractor(data, config.posterImage);
-  const title = dataExtractor(data, config.name);
-  const subTitle = dataExtractor(data, config.city);
   const dominantColor = dataExtractor(data, config?.dominantColor) || 'transparent';
   return (
     <SPressable

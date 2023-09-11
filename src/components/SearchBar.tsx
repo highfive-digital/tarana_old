@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from 'react';
+import { useRef, useState, type ReactElement } from 'react';
 import { Keyboard } from 'react-native';
 import { type TextInput } from 'react-native-gesture-handler';
 import OutsidePressHandler from 'react-native-outside-press';
