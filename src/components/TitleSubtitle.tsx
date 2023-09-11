@@ -9,7 +9,6 @@ interface TitleSubtitleType {
   titleFontSize?: FontSize;
   subtitleFontSize?: FontSize;
   titleFontWeight?: FontFamilyWeightType;
-
   subTitleFontWeight?: FontFamilyWeightType;
 }
 
@@ -19,7 +18,7 @@ const TitleSubtitle: React.FC<TitleSubtitleType> = ({
   titleFontSize = 'sm',
   subtitleFontSize = 'xs',
   titleFontWeight = 'semibold',
-  subTitleFontWeight = 'regular'
+  subTitleFontWeight = 'medium'
 }) => {
   return (
     <>

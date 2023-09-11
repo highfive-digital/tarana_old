@@ -26,8 +26,8 @@ const tileSizeMap = {
     width: 100
   },
   lg: {
-    height: 120,
-    width: 120
+    height: 130,
+    width: 130
   },
   xl: {
     height: 140,
@@ -77,13 +77,13 @@ const Tile: React.FC<TileConfig> = ({
       }}
       marginRight={spacing[styleConfig.gutterRight]}
       marginLeft={spacing[styleConfig.gutterLeft]}
-      overflow='hidden'
     >
       <SView
         height={tileSizeMap[styleConfig.size].height}
         width={tileSizeMap[styleConfig.size].width}
         backgroundColor={dominantColor}
         borderRadius={borderRadius[styleConfig.radius]}
+        overflow='hidden'
       >
         <SImage
           src={src}
@@ -95,7 +95,7 @@ const Tile: React.FC<TileConfig> = ({
         />
       </SView>
 
-      <SView width={tileSizeMap[styleConfig.size].width} paddingTop={spacing.sm}>
+      <SView width={tileSizeMap[styleConfig.size].width} height={44} paddingTop={spacing.sm}>
         <TitleSubtitle
           titleFontSize={styleConfig.titleFontSize}
           subtitleFontSize={styleConfig.subtitleFontSize}

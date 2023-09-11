@@ -16,7 +16,9 @@ const ActionCard = ({ text }: { text: string }) => {
     >
       <SView display='flex' flexDirection='row' gap={spacing.sm} alignItems='center'>
         <SVGIcon icon='HISTORY' height={20} width={20} fill={theme.dark.text.secondary} />
-        <SText fontSize={fontSize.base}>{text}</SText>
+        <SText fontSize={fontSize.base} fontFamilyWeight='medium'>
+          {text}
+        </SText>
       </SView>
       <SVGIcon icon='RECENT_SEARCH' height={24} width={24} fill={theme.dark.text.primary} />
     </SPressable>

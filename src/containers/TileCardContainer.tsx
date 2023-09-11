@@ -1,6 +1,7 @@
 import { SView, TileCard } from '~components';
 import { isValidArray } from '~helpers/validators';
-import { spacing } from '~styles/utilities';
+import { theme } from '~styles';
+import { borderRadius, spacing } from '~styles/utilities';
 
 interface TileCardContainerProps {
   data: any;
@@ -14,9 +15,13 @@ const TileCardContainer: React.FC<TileCardContainerProps> = ({ data, config, onP
       display='flex'
       flexDirection='row'
       flexWrap='wrap'
-      justifyContent='flex-start'
+      justifyContent='space-evenly'
+      alignItems='center'
       columnGap={spacing.sm}
       rowGap={spacing.sm}
+      backgroundColor={theme.dark.background.card}
+      borderRadius={borderRadius.xl}
+      paddingVertical={spacing.sm}
     >
       {isValidArray(data)
         ? data.map((item: any, idx: number) => (

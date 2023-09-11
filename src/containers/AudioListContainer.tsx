@@ -1,5 +1,6 @@
 import { FlashList } from '@shopify/flash-list';
-import { AudioListItem } from '~components';
+import { AudioListItem, SView } from '~components';
+import { colors } from '~styles';
 import { spacing } from '~styles/utilities';
 
 interface AudioListContainerProps {
@@ -13,8 +14,12 @@ const AudioListContainer: React.FC<AudioListContainerProps> = ({ data, config, o
     <FlashList
       data={data}
       contentContainerStyle={{ paddingBottom: spacing.scroll }}
-      renderItem={({ item }) => {
-        return <AudioListItem data={item} config={config} onPress={onPress} />;
+      renderItem={({ item, index }) => {
+        return (
+          <SView backgroundColor={index % 2 === 0 ? colors.black[800] : 'transparent'}>
+            <AudioListItem data={item} config={config} onPress={onPress} />
+          </SView>
+        );
       }}
       estimatedItemSize={66}
     />

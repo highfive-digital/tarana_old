@@ -4,7 +4,7 @@ import SText from '~components/SText/SText';
 import SVGIcon from '~components/SVGIcon';
 import SView from '~components/SView/SView';
 import { theme } from '~styles';
-import { fontSize } from '~styles/utilities';
+import { fontSize, spacing } from '~styles/utilities';
 
 interface SectionHeaderProps {
   heading: string;
@@ -18,15 +18,20 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   route
 }) => {
   return (
-    <SView display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
-      <SText fontSize={fontSize.md} fontFamilyWeight='medium' color='primary'>
+    <SView
+      display='flex'
+      flexDirection='row'
+      alignItems='center'
+      justifyContent='space-between'
+      paddingVertical={spacing.md}
+    >
+      <SText fontSize={fontSize.md} fontFamilyWeight='semibold' color='primary'>
         {heading}
       </SText>
       {onPress ? (
         <SPressable
           backgroundColor='transparent'
           width={40}
-          paddingVertical={12}
           borderRadius={50}
           display='flex'
           justifyContent='center'
