@@ -1,9 +1,9 @@
 import SView from '~components/SView/SView';
 import { PaddedView } from '~containers';
+import LoaderContainer from '~containers/LoaderContainer';
 import { spacing } from '~styles/utilities';
 import { type TileStyle } from '~types/components.types';
 import SectionHeaderLoader from './SectionHeaderLoader';
-import TileLoader from './TileLoader';
 
 const SectionLoader = ({ styleConfig }: { styleConfig: TileStyle }) => {
   return (
@@ -11,9 +11,7 @@ const SectionLoader = ({ styleConfig }: { styleConfig: TileStyle }) => {
       <SectionHeaderLoader />
       <PaddedView paddingHorizontal='sm'>
         <SView display='flex' flexDirection='row' gap={spacing.md}>
-          <TileLoader styleConfig={styleConfig} />
-          <TileLoader styleConfig={styleConfig} />
-          <TileLoader styleConfig={styleConfig} />
+          <LoaderContainer type='TILE' count={3} styleConfig={styleConfig} />
         </SView>
       </PaddedView>
     </SView>
