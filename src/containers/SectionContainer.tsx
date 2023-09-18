@@ -48,7 +48,10 @@ const SectionContainer: React.FC<SectionContainerProps> = ({ headerConfig, compo
       )}
       {componentConfig.component === 'SEARCH_HISTORY' ? (
         <PaddedView paddingHorizontal='sm'>
-          <ActionCardContainer historyData={componentConfig.data} />
+          <ActionCardContainer
+            actionCardData={componentConfig.data}
+            onPress={componentConfig.onPress}
+          />
         </PaddedView>
       ) : (
         (null as unknown as ReactElement)

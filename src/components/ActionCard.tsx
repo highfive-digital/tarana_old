@@ -5,7 +5,7 @@ import SText from './SText/SText';
 import SVGIcon from './SVGIcon';
 import SView from './SView/SView';
 
-const ActionCard = ({ text }: { text: string }) => {
+const ActionCard = ({ text, onPress }: { text: string; onPress: (term: string) => void }) => {
   return (
     <SPressable
       display='flex'
@@ -13,6 +13,11 @@ const ActionCard = ({ text }: { text: string }) => {
       justifyContent='space-between'
       paddingVertical={spacing.lg}
       alignItems='center'
+      pressableConfig={{
+        onPress: () => {
+          onPress(text);
+        }
+      }}
     >
       <SView display='flex' flexDirection='row' gap={spacing.sm} alignItems='center'>
         <SVGIcon icon='HISTORY' height={20} width={20} fill={theme.dark.text.secondary} />

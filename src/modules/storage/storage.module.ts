@@ -22,7 +22,7 @@ class Storage {
     }
   }
 
-  get(key: string, type: 'number' | 'string' | 'boolean' | 'object') {
+  get(key: string, type: 'number' | 'string' | 'boolean' | 'object' | 'array') {
     let data;
     switch (type) {
       case 'number':
@@ -37,6 +37,11 @@ class Storage {
       case 'object':
         data = JSON.parse(
           this.#mmkvInstance != null ? this.#mmkvInstance.getString(key) ?? '{}' : '{}'
+        );
+        break;
+      case 'array':
+        data = JSON.parse(
+          this.#mmkvInstance != null ? this.#mmkvInstance.getString(key) ?? '[]' : '[]'
         );
         break;
       default:

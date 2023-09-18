@@ -14,9 +14,10 @@ interface SearchBarProps {
   onChange: (text: string) => void;
   onEnter: (text: string) => void;
   onClear?: () => void;
+  searchTerm?: string;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onChange, onEnter }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onChange, onEnter, searchTerm }) => {
   const [state, setState] = useState(true);
   const [term, setTerm] = useState('');
   const inputRef = useRef<TextInput | any>(null);
@@ -52,6 +53,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onChange, onEnter }) => {
             textInputConfig={{
               placeholder: 'Search your favorite station',
               placeholderTextColor: theme.dark.text.primary,
+              value: searchTerm,
               onChangeText(text: string) {
                 onChange(text);
                 // to make sure the  re-render does not happen multiple times
@@ -64,11 +66,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ onChange, onEnter }) => {
               }
             }}
           />
-          {term.length ? (
+          {term.length || searchTerm?.length ? (
             <SPressable
               pressableConfig={{
                 onPress: () => {
                   inputRef.current.clear();
+                  onChange('');
                   setTerm('');
                 }
               }}

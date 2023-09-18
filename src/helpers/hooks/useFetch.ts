@@ -10,13 +10,13 @@ const useFetch = ({
   queryFn: (param?: any) => Promise<Response>;
   shouldFetchOnLoad?: boolean;
 }) => {
-  const { isError, isLoading, isFetched, refetch, data, isSuccess, isPending } = useQuery({
+  const { isError, isLoading, isFetched, refetch, data, isSuccess, isPending, status } = useQuery({
     queryKey,
     queryFn,
     enabled: shouldFetchOnLoad
   });
 
-  return { isError, isLoading, isFetched, refetch, data, isSuccess, isPending };
+  return { isError, isLoading, isFetched, refetch, data, isSuccess, isPending, status };
 };
 
 export default useFetch;
