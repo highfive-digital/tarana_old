@@ -2,13 +2,14 @@ import { Fragment } from 'react';
 import ActionCard from '~components/ActionCard';
 
 interface ActionCardContainerProps {
-  historyData: Array<{ text: string }>;
+  actionCardData: Array<{ text: string }>;
+  onPress: (text: string) => void;
 }
-const ActionCardContainer: React.FC<ActionCardContainerProps> = ({ historyData }) => {
+const ActionCardContainer: React.FC<ActionCardContainerProps> = ({ actionCardData, onPress }) => {
   return (
     <Fragment>
-      {historyData.map((data, idx) => (
-        <ActionCard text={data.text} key={idx} />
+      {actionCardData.map((data, idx) => (
+        <ActionCard text={data.text} key={idx} onPress={onPress} />
       ))}
     </Fragment>
   );

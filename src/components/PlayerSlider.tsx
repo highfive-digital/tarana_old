@@ -4,13 +4,14 @@ import {
   useBottomSheetTimingConfigs
 } from '@gorhom/bottom-sheet';
 import { useEffect, useMemo, useRef, type ReactElement } from 'react';
-import { StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { Easing } from 'react-native-reanimated';
 import { useSnapshot } from 'valtio';
 import { useBottomSheetBackHandler } from '~helpers/hooks/useBottomSheetBackHandler';
 import { initializeConfig } from '~helpers/intialize.config';
 import { playerActions, playerState } from '~states/player';
 import { theme } from '~styles';
+import { borderRadius } from '~styles/utilities';
 import MiniPlayer from './MiniPlayer';
 import PlayerExtended from './PlayerExtended';
 import SView from './SView/SView';
@@ -49,6 +50,7 @@ const SimplePlayer = () => {
         bottom={56}
         width={'100%'}
       >
+        <StatusBar translucent backgroundColor='transparent' />
         {snap.currentTrack.title !== '' ? (
           <MiniPlayer
             onPress={() => {
@@ -78,9 +80,10 @@ const SimplePlayer = () => {
 
 const backGroundStyle = StyleSheet.create({
   bg: {
-    borderRadius: 0,
-    backgroundColor: theme.dark.background.primary,
-    flex: 1
+    borderRadius: borderRadius.xxl,
+    backgroundColor: 'transparent',
+    flex: 1,
+    overflow: 'hidden'
   }
 });
 

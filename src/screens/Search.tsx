@@ -1,10 +1,10 @@
-import { FlashList } from '@shopify/flash-list';
-import { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { SView, SearchBar } from '~components';
-import Chip from '~components/Chip';
-import { PaddedView, SectionContainer } from '~containers';
+import { PaddedView, ScreenContainer, SectionContainer } from '~containers';
 import AudioListContainer from '~containers/AudioListContainer';
-import { getTrackFromMetaData } from '~helpers/common';
+import ChipListContainer from '~containers/ChipListContainer';
+import LoaderContainer from '~containers/LoaderContainer';
+import { findDuplicatesAndRemove, getTrackFromMetaData } from '~helpers/common';
 import { searchChipConfig } from '~helpers/component.config';
 import { CITY_RADIO_TILE_CONFIG, RADIO_TRACK_CONFIG } from '~helpers/data.config';
 import useFetch from '~helpers/hooks/useFetch';
@@ -14,7 +14,7 @@ import endpoints from '~modules/network/endpoints';
 import { type Track } from '~modules/player/player.types';
 import { spacing } from '~styles/utilities';
 
-const { player } = initializeConfig();
+const { player, storage } = initializeConfig();
 
 const addAndPlay = (track: Track) => {
   const cleanedTrack = getTrackFromMetaData(track, RADIO_TRACK_CONFIG);
@@ -22,15 +22,33 @@ const addAndPlay = (track: Track) => {
 };
 
 const Search = () => {
+  const searchHistory = storage.get('search_history', 'array');
   const [searchTerm, setSearchTerm] = useState('');
-  const { data, refetch } = useFetch({
+  const { data, refetch, isLoading } = useFetch({
     queryKey: [`search_${searchTerm}`],
     queryFn: async () => await endpoints.searchStation(searchTerm, 20, 0),
     shouldFetchOnLoad: false
   });
 
+  const saveHistory = () => {
+    if (isValidArray(searchHistory)) {
+      const appendedData = findDuplicatesAndRemove(
+        [{ text: searchTerm }, ...searchHistory],
+        'text',
+        5
+      );
+      storage.set('search_history', appendedData, 'object');
+    } else {
+      storage.set('search_history', [{ text: searchTerm }], 'object');
+    }
+  };
+
   const refetchData = async () => {
-    await refetch();
+    await refetch().then(({ isRefetchError, data: respData }) => {
+      if (!isRefetchError && isValidArray(respData?.data) && searchTerm.length) {
+        saveHistory();
+      }
+    });
   };
 
   const onChange = (term: string) => {
@@ -40,83 +58,58 @@ const Search = () => {
   const onEnter = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     refetchData().then(() => {
-      console.log('fetch done');
+      console.log('RE_FETCH DONE');
     });
   };
 
-  const recentSearch = [
-    {
-      text: 'Radio Zindagi'
-    },
-    {
-      text: 'Akashvani Bangalore'
-    },
-    {
-      text: 'Radio Mirchi'
-    },
-    {
-      text: 'Bollywood FM'
-    },
-    {
-      text: 'Big Radio'
-    }
-  ];
+  const onSearchHistoryActionPress = (text: string) => {
+    onChange(text);
+    setTimeout(() => {
+      onEnter();
+    }, 500);
+  };
 
   return (
-    <Fragment>
+    <ScreenContainer>
       <PaddedView paddingVertical='md'>
-        <SearchBar onChange={onChange} onEnter={onEnter} />
+        <SearchBar onChange={onChange} onEnter={onEnter} searchTerm={searchTerm} />
       </PaddedView>
-      <PaddedView paddingHorizontal='sm'>
-        <FlashList
-          data={searchChipConfig}
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          renderItem={({ item, index }) => {
-            return (
-              <SView
-                marginRight={index === searchChipConfig.length - 1 ? spacing.none : spacing.xs}
-              >
-                <Chip
-                  textConfig={item.textConfig}
-                  iconConfig={item.iconConfig}
-                  onPress={item.onPress}
-                />
-              </SView>
-            );
-          }}
-          estimatedItemSize={40}
-        />
-      </PaddedView>
-      {isValidArray(data?.data) ? (
-        <Fragment>
-          <SView display='flex' flex={1} paddingVertical={spacing.md}>
-            <AudioListContainer
-              data={data?.data}
-              config={CITY_RADIO_TILE_CONFIG}
-              onPress={(item: Track) => {
-                addAndPlay(item);
-              }}
-            />
-          </SView>
-        </Fragment>
+      <ChipListContainer chipConfig={searchChipConfig} />
+      {isLoading ? (
+        <LoaderContainer type='AUDIO_LIST' count={6} />
       ) : (
-        <Fragment>
-          <SectionContainer
-            headerConfig={{
-              heading: 'Recently Searched'
-            }}
-            componentConfig={{
-              component: 'SEARCH_HISTORY',
-              data: recentSearch,
-              config: null,
-              styleConfig: null,
-              onPress: () => {}
-            }}
-          />
-        </Fragment>
+        <React.Fragment>
+          {isValidArray(data?.data) && searchTerm.length ? (
+            <SView display='flex' flex={1} paddingVertical={spacing.md}>
+              <AudioListContainer
+                data={data?.data}
+                config={CITY_RADIO_TILE_CONFIG}
+                onPress={(item: Track) => {
+                  addAndPlay(item);
+                }}
+              />
+            </SView>
+          ) : (
+            <React.Fragment>
+              {isValidArray(searchHistory) && (
+                <SectionContainer
+                  headerConfig={{
+                    heading: 'Recently Searched'
+                  }}
+                  componentConfig={{
+                    component: 'SEARCH_HISTORY',
+                    data: searchHistory,
+                    config: null,
+                    styleConfig: null,
+                    onPress: onSearchHistoryActionPress
+                  }}
+                />
+              )}
+            </React.Fragment>
+          )}
+        </React.Fragment>
       )}
-    </Fragment>
+    </ScreenContainer>
   );
 };
 

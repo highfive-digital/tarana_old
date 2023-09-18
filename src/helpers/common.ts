@@ -72,3 +72,48 @@ export const getTrackFromMetaData = (track: Track, config: any) => {
     blurHash
   };
 };
+
+export const getColorWithOpacity = (hexColor: string, opacity: number): string => {
+  // Ensure opacity is within the valid range of 0 to 1
+  opacity = Math.min(1, Math.max(0, opacity));
+
+  // Parse the hex color to RGB components
+  const r: number = parseInt(hexColor.slice(1, 3), 16);
+  const g: number = parseInt(hexColor.slice(3, 5), 16);
+  const b: number = parseInt(hexColor.slice(5, 7), 16);
+
+  // Calculate the new RGB values with opacity
+  const newR: number = Math.round(r * opacity);
+  const newG: number = Math.round(g * opacity);
+  const newB: number = Math.round(b * opacity);
+
+  // Convert the RGB values to hex and pad with zeros if needed
+  const newHexR: string = newR.toString(16).padStart(2, '0');
+  const newHexG: string = newG.toString(16).padStart(2, '0');
+  const newHexB: string = newB.toString(16).padStart(2, '0');
+
+  // Create the new hex color with opacity
+  const newHexColor: string = `#${newHexR}${newHexG}${newHexB}`;
+
+  return newHexColor;
+};
+
+export const findDuplicatesAndRemove = <T>(jsonArray: T[], key: keyof T, count?: number): T[] => {
+  const seen = new Set();
+  const uniqueArray: T[] = [];
+
+  for (const item of jsonArray) {
+    const keyValue = item[key];
+
+    if (!seen.has(keyValue)) {
+      seen.add(keyValue);
+      uniqueArray.push(item);
+
+      if (count !== undefined && uniqueArray.length >= count) {
+        break;
+      }
+    }
+  }
+
+  return uniqueArray;
+};

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
+import NetInfo from '@react-native-community/netinfo';
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 interface HttpOptions {
@@ -20,30 +21,41 @@ async function http<T>(url: string, options: HttpOptions = {}): Promise<T | null
     responseType = 'json'
   } = options;
 
+  // Check for network connectivity
+  const netInfoState = await NetInfo.fetch();
+  if (!netInfoState.isConnected) {
+    const networkError = new Error('No network connection');
+    console.error(`Network error: ${networkError.message}`);
+    throw networkError;
+  }
+
   const requestOptions: RequestInit = {
     method,
-    headers: headers as HeadersInit_
+    headers: {
+      ...headers
+    }
   };
 
   if (body && (method === 'POST' || method === 'PUT')) {
     if (body instanceof FormData) {
       requestOptions.body = body;
     } else {
-      (requestOptions.headers as Record<string, string>)['Content-Type'] = 'application/json';
+      (requestOptions.headers as Record<string, string>)['content-type'] = 'application/json';
       requestOptions.body = JSON.stringify(body);
     }
   } else if (body && method !== 'POST' && method !== 'PUT') {
-    throw new Error('Request body is only supported for POST and PUT methods');
+    const invalidMethodError = new Error('Request body is only supported for POST and PUT methods');
+    console.error(`Invalid request: ${invalidMethodError.message}`);
+    throw invalidMethodError;
   }
 
   let requestUrl = url;
   if (params) {
     const queryParams = new URLSearchParams(params);
-    requestUrl = `${requestUrl}?${queryParams.toString()}`;
+    requestUrl += `?${queryParams.toString()}`;
   }
 
   try {
-    console.log({ requestUrl });
     const response = await fetch(requestUrl, requestOptions);
 
     if (
@@ -51,7 +63,9 @@ async function http<T>(url: string, options: HttpOptions = {}): Promise<T | null
       (Array.isArray(expectedStatus) && !expectedStatus.includes(response.status)) ||
       (typeof expectedStatus === 'number' && response.status !== expectedStatus)
     ) {
-      throw new Error(`Request failed with status ${response.status}`);
+      const statusError = new Error(`Request failed with status ${response.status}`);
+      console.error(`Request error: ${statusError.message}`);
+      throw statusError;
     }
 
     if (responseType === 'json') {
@@ -61,11 +75,13 @@ async function http<T>(url: string, options: HttpOptions = {}): Promise<T | null
       const responseData = (await response.text()) as T;
       return responseData;
     } else {
-      throw new Error(`Invalid responseType: ${responseType}`);
+      const invalidResponseError = new Error(`Invalid responseType: ${responseType}`);
+      console.error(`Response error: ${invalidResponseError.message}`);
+      throw invalidResponseError;
     }
-  } catch (error) {
-    console.error(`An error occurred: ${error}`);
-    return null;
+  } catch (error: any) {
+    console.error(`An error occurred: ${error.message}`);
+    throw error; // Re-throw the error for higher-level error handling if needed
   }
 }
 
