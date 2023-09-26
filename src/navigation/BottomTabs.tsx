@@ -1,15 +1,24 @@
 import { NavigationHandler } from 'navigation-react';
 import { NavigationStack, Scene, StatusBar, TabBar, TabBarItem } from 'navigation-react-native';
+import React from 'react';
 import { Platform } from 'react-native';
+import { useSnapshot } from 'valtio';
 import Home from '~screens/Home';
 import Search from '~screens/Search';
 import Settings from '~screens/Settings';
 import ViewAll from '~screens/ViewAll';
+import { tabActions, tabState } from '~states/tab';
 import { colors, theme } from '~styles';
 import { fonts } from '~styles/theme';
 import { homeNavigator, searchNavigator, settingsNavigator } from './stateNavigators';
 
 const BottomTabs = () => {
+  const snap = useSnapshot(tabState, { sync: true });
+
+  const onChangeTab = (tabId: number) => {
+    tabActions.setTab(tabId, null);
+  };
+
   return (
     <>
       {/* <NavigationBar hidden={true} /> */}
@@ -21,6 +30,8 @@ const BottomTabs = () => {
         selectedTintColor={theme.base.navBarIcons}
         barTintColor={theme.dark.navigation.background}
         labelVisibilityMode='unlabeled'
+        tab={snap?.currentTab}
+        onChangeTab={onChangeTab}
       >
         <TabBarItem
           title='Home'
@@ -85,4 +96,4 @@ const BottomTabs = () => {
   );
 };
 
-export default BottomTabs;
+export default React.memo(BottomTabs);

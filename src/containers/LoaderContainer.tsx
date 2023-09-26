@@ -16,7 +16,7 @@ const LoaderContainer: React.FC<LoaderProps> = ({ type, count = 1, styleConfig }
     <React.Fragment>
       {type === 'SECTION_CONTAINER'
         ? Array.from(Array(count).keys()).map((_, idx) => (
-            <SectionLoader styleConfig={styleConfig as TileStyle} key={idx} />
+            <SectionLoader styleConfig={styleConfig as TileStyle} key={idx} count={count} />
           ))
         : (null as unknown as ReactElement)}
 

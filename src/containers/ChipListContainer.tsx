@@ -11,7 +11,7 @@ interface ChipListProps {
 
 const ChipListContainer: React.FC<ChipListProps> = ({ chipConfig }) => {
   return (
-    <PaddedView paddingHorizontal='sm'>
+    <PaddedView paddingHorizontal='md'>
       <FlashList
         data={chipConfig}
         showsHorizontalScrollIndicator={false}

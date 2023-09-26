@@ -1,6 +1,6 @@
 import { NavigationContext } from 'navigation-react';
 import { Fragment, useContext } from 'react';
-import { SearchBar } from '~components';
+import Greetings from '~components/Greetings';
 import { ScreenContainer, SectionContainer } from '~containers';
 import LoaderContainer from '~containers/LoaderContainer';
 import { getTrackFromMetaData } from '~helpers/common';
@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <ScreenContainer type='SCROLL_VIEW'>
-      <SearchBar onChange={() => {}} onEnter={() => {}} />
+      <Greetings name='Ashish' />
       {isSuccess && !isError && status === 'success' ? (
         <Fragment>
           <SectionContainer
