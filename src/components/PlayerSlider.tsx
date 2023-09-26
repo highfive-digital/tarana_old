@@ -27,8 +27,8 @@ const SimplePlayer = () => {
   };
   const { handleSheetPositionChange } = useBottomSheetBackHandler(bottomSheetModalRef);
   const animationConfigs = useBottomSheetTimingConfigs({
-    duration: 150,
-    easing: Easing.sin
+    duration: 200,
+    easing: Easing.ease
   });
 
   //  Check if this can be handled more efficiently

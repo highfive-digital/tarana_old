@@ -23,7 +23,7 @@ const TileContainer: React.FC<TileContainerProps> = ({ data, config, onPress, st
             onPress={onPress}
             styleConfig={{
               ...styleConfig,
-              gutterLeft: index === 0 ? 'sm' : 'none',
+              gutterLeft: index === 0 ? 'md' : 'none',
               gutterRight: index === data.length - 1 ? 'lg' : 'md'
             }}
           />

@@ -3,27 +3,33 @@ import { Keyboard } from 'react-native';
 import { type TextInput } from 'react-native-gesture-handler';
 import OutsidePressHandler from 'react-native-outside-press';
 import SInput from '~components/SInput/SInput';
-import SView from '~components/SView/SView';
 import PaddedView from '~containers/PaddedView';
 import { theme } from '~styles';
 import { borderRadius, fontSize, spacing } from '~styles/utilities';
 import SPressable from './SPressable/SPressable';
 import SVGIcon from './SVGIcon';
+import SView from './SView/SView';
 
 interface SearchBarProps {
   onChange: (text: string) => void;
   onEnter: (text: string) => void;
   onClear?: () => void;
   searchTerm?: string;
+  onFocus?: () => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onChange, onEnter, searchTerm }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  onChange,
+  onEnter,
+  searchTerm,
+  onFocus = () => {}
+}) => {
   const [state, setState] = useState(true);
   const [term, setTerm] = useState('');
   const inputRef = useRef<TextInput | any>(null);
 
   return (
-    <PaddedView paddingHorizontal='sm'>
+    <PaddedView paddingHorizontal='md'>
       <SView display='flex' flexDirection='row' alignItems='center'>
         <OutsidePressHandler
           onOutsidePress={() => {
@@ -63,6 +69,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ onChange, onEnter, searchTerm }) 
               },
               onSubmitEditing(e) {
                 onEnter(e.nativeEvent.text);
+              },
+              onFocus: () => {
+                onFocus();
+                setTimeout(() => {
+                  inputRef.current.focus();
+                }, 300);
               }
             }}
           />

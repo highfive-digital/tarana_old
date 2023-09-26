@@ -21,7 +21,7 @@ const AudioListItem: React.FC<AudioListItemProps> = ({ data, config, onPress }) 
   const dominantColor = dataExtractor(data, config.dominantColor);
 
   return (
-    <PaddedView paddingHorizontal='sm'>
+    <PaddedView paddingHorizontal='md'>
       <SPressable
         overflow='hidden'
         display='flex'

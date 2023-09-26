@@ -4,7 +4,7 @@ import { type BaseColorType } from '~types/components.types';
 import getViewStyles from './sView.style';
 
 interface SViewProps {
-  children: React.ReactElement | React.ReactElement[];
+  children: JSX.Element | JSX.Element[];
   color?: BaseColorType;
   viewConfig?: ViewProps;
 }

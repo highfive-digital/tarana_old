@@ -5,7 +5,7 @@ import { borderRadius, spacing } from '~styles/utilities';
 
 const SectionHeaderLoader = () => {
   return (
-    <PaddedView paddingHorizontal='sm'>
+    <PaddedView paddingHorizontal='md'>
       <SkeletonPlaceholder
         borderRadius={4}
         backgroundColor={colors.material[800]}

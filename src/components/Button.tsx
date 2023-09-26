@@ -1,7 +1,8 @@
 import { type ReactElement } from 'react';
 import { theme } from '~styles';
-import { fontSize, spacing } from '~styles/utilities';
+import { borderRadius, fontSize, spacing } from '~styles/utilities';
 import {
+  type BorderRadius,
   type FontFamilyWeightType,
   type FontSize,
   type SVG,
@@ -20,6 +21,7 @@ interface ButtonProps {
     width: number;
     gutterX: SpacingType;
     gutterY: SpacingType;
+    borderRadius?: BorderRadius;
   };
   iconConfig?: {
     icon: SVG;
@@ -41,7 +43,8 @@ const SButton: React.FC<ButtonProps> = ({
     gutterX: 'md',
     gutterY: 'lg',
     height: 'auto',
-    width: 'auto'
+    width: 'auto',
+    borderRadius: 'xxl'
   },
   iconConfig = {
     icon: 'HEART',
@@ -60,6 +63,8 @@ const SButton: React.FC<ButtonProps> = ({
       justifyContent='center'
       alignItems='center'
       paddingHorizontal={spacing[styleConfig?.gutterX]}
+      paddingVertical={spacing[styleConfig?.gutterX]}
+      borderRadius={borderRadius[styleConfig.borderRadius as BorderRadius]}
       backgroundColor={color}
       pressableConfig={{
         onPress

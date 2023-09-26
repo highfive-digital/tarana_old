@@ -117,3 +117,10 @@ export const findDuplicatesAndRemove = <T>(jsonArray: T[], key: keyof T, count?:
 
   return uniqueArray;
 };
+
+export const getGreeting = () => {
+  const currentHour = new Date().getHours();
+  const greeting =
+    currentHour < 12 ? 'Good morning !' : currentHour < 18 ? 'Good afternoon !' : 'Good evening !';
+  return greeting;
+};

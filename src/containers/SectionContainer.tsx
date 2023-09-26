@@ -22,7 +22,7 @@ interface SectionContainerProps {
 const SectionContainer: React.FC<SectionContainerProps> = ({ headerConfig, componentConfig }) => {
   return (
     <SView display='flex' flexDirection='column' gap={4} marginTop={spacing.lg}>
-      <PaddedView paddingHorizontal='sm'>
+      <PaddedView paddingHorizontal='md'>
         <SectionHeader heading={headerConfig?.heading} onPress={headerConfig?.onPress} />
       </PaddedView>
       {componentConfig.component === 'TILE' ? (
@@ -36,7 +36,7 @@ const SectionContainer: React.FC<SectionContainerProps> = ({ headerConfig, compo
         (null as unknown as ReactElement)
       )}
       {componentConfig.component === 'RECENT' ? (
-        <PaddedView paddingHorizontal='sm'>
+        <PaddedView paddingHorizontal='md'>
           <TileCardContainer
             config={componentConfig.config}
             data={componentConfig.data}
@@ -47,7 +47,7 @@ const SectionContainer: React.FC<SectionContainerProps> = ({ headerConfig, compo
         (null as unknown as ReactElement)
       )}
       {componentConfig.component === 'SEARCH_HISTORY' ? (
-        <PaddedView paddingHorizontal='sm'>
+        <PaddedView paddingHorizontal='md'>
           <ActionCardContainer
             actionCardData={componentConfig.data}
             onPress={componentConfig.onPress}

@@ -5,7 +5,7 @@ import { borderRadius, spacing } from '~styles/utilities';
 
 const AudioListItemLoader = () => {
   return (
-    <PaddedView paddingHorizontal='sm'>
+    <PaddedView paddingHorizontal='md'>
       <SkeletonPlaceholder
         backgroundColor={colors.material[800]}
         highlightColor={colors.material[600]}
