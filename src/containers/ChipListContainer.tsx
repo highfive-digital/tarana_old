@@ -1,4 +1,4 @@
-import { FlashList } from 'react-native-actions-sheet';
+import { FlashList } from '@shopify/flash-list';
 import { SView } from '~components';
 import Chip from '~components/Chip';
 import { spacing } from '~styles/utilities';
