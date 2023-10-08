@@ -51,5 +51,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Gilroy-Bold.ttf</string>
+		<string>Gilroy-Medium.ttf</string>
+		<string>Gilroy-Regular.ttf</string>
+		<string>Gilroy-Semibold.ttf</string>
+	</array>
 </dict>
 </plist>
